@@ -1,0 +1,113 @@
+// ====================================================
+// Main css file for Wedding-cm.com
+// @create          27 March 2013
+// @author          iChaiwut (ichaiwut.s@gmail.com)
+// ====================================================
+
+$au: auto;
+$zero: 0;
+
+$block: inline-block;
+$no: none;
+
+$t: top;
+$m: middle;
+$b: bottom;
+$l: left;
+$r: right;
+$c: center;
+$bd: bold;
+$norm: normal;
+
+@font-face {
+    font-family: 'thai_sans_literegular';
+    src: url('thaisanslite_r1-webfont.eot');
+    src: url('thaisanslite_r1-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thaisanslite_r1-webfont.woff') format('woff'),
+         url('thaisanslite_r1-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+$thaisans: thai_sans_literegular;
+
+// Control all box inreal size when you use padding.
+* {
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+}
+
+ //=========================================
+ // Mixin
+ // ========================================
+
+ @mixin gradientBg($startColor, $endColor) {
+    background-image: -ms-linear-gradient(top, $startColor 0%, $endColor 100%);/* IE10 Consumer Preview */
+    background-image: -moz-linear-gradient(top, $startColor 0%, $endColor 100%); /* Mozilla Firefox */
+    background-image: -o-linear-gradient(top, $startColor 0%, $endColor 100%);/* Opera */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $startColor), color-stop(1, $endColor));/* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-linear-gradient(top, $startColor 0%, $endColor 100%);/* Webkit (Chrome 11+) */
+    background-image: linear-gradient(to bottom, $startColor 0%, $endColor 100%);/* W3C Markup, IE10 Release Preview */
+ }
+
+//Import important file
+@import "normalize";
+
+
+body {
+    background: #E0E1E3;
+    font-family: Arial, Sans-serif;
+    font-size: .9em;
+    color: #666;
+    line-height: 1.5;
+}
+
+// Default style for text
+a {
+    color: #339FD6;
+    font-weight: $bd;
+    text-decoration: $no;
+
+    &:hover {
+        text-decoration: $no;
+    }
+}
+
+h1 { font-size: 1.6em; }
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.2em; }
+
+// ==============================
+// Often use
+// ==============================
+//adjust text.
+.aligncenter { text-align: $c; }
+.alignright { text-align: $r; }
+ .alignleft { text-align: $l; }
+
+// Float block.
+.right { float: $r; }
+ .left { float: $l; }
+
+ .shadow {
+    -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 5px rgba(50, 50, 50, 0.75);
+ }
+
+
+// =========================================
+// Button
+// =========================================
+.btn-enroll-course {
+    border: 1px solid #236F7F;
+    border-radius: 5px;
+    color: #fff;
+    @include gradientBg($startColor: #309AA7, $endColor: #236F7F);
+    &:hover { background: #309AA7; }
+}
+
+// ========================================
+// Layout
+// ========================================
