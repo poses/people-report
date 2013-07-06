@@ -9,9 +9,14 @@
 
 	//Include **important** files.
 	require 'include/function.php'; //Function will store every process.
-	//Render template
-	include 'layout/header.php';
-	include $mainContent;
-	include 'layout/footer.php';
-
+	include 'layout/header.php'
 ?>
+
+<div class="main-container">
+	<h2>Content</h2>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, ex, culpa debitis laudantium vitae cum veritatis quidem cumque expedita cupiditate mollitia fuga tenetur molestias amet eveniet porro iusto quisquam sequi.
+	</p>
+</div>
+
+<?php include 'layout/footer.php'; ?>
