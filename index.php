@@ -7,10 +7,13 @@
 	 * @since 8 July 2013
 	 */
 
+	require('boostraps.php');
+	require('model.php');
 	require('controller.php');
 
 	//Create `controller` object.
-	$controller = new Controller();
+	$model = new Model();
+	$controller = new Controller($model);
 	$action = $_GET['action'];
 
 	include 'templates/header.php';

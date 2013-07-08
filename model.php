@@ -6,9 +6,19 @@
 	 * @since 8 July 2013
 	 */
 	class Model {
-	    public $string;
-	    public function __construct(){
-	        $this->string = "MVC + PHP = Awesome!";
+
+    	public function connect() {
+    		// global $db;
+    		try {
+	    		return new PDO('mysql:host=localhost;dbname=people', 'root', 'root');
+    		} catch( PDOException $e ) {
+				echo 'ERROR! : ' . $e->getMessage();
+    		}
+    	}
+
+    	public function findAll() {
+    		$data = $this->connect();
+    		return $data->query('SELECT * FROM faceacc_access_type');
     	}
 	}
 ?>

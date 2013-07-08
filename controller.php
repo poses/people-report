@@ -8,10 +8,9 @@
 	class Controller {
 	    private $model;
 
-	    // public function __construct($model){
-	    //     $this->model = $model;
-	    //     $this->template = 'template/list-view.tmp.php';
-	    // }
+	    public function __construct($model) {
+	        $this->model = $model;
+	    }
 
 	    /**
 	     * Index page for project
@@ -20,6 +19,7 @@
 	     * @since 8 July 2013
 	     */
 	    public function index() {
+	    	$allData = $this->model->findAll();
 	        require_once('templates/show-detail.tpl.php');
 	    }
 
