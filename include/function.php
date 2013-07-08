@@ -9,6 +9,8 @@
 	 *
 	 */
 
+	require 'configuration.php';
+	print_r($databaseConfig);
 	/**
 	 * Connect to the database.
 	 * @author Ting <ichaiwut.s@gmail.com>
