@@ -8,20 +8,21 @@
 	 */
 
 	require('controller.php');
+
+	//Create `controller` object.
+	$controller = new Controller();
 	$action = $_GET['action'];
 
+	include 'templates/header.php';
 	//If user not type any action redirect to _not found page_.
 	if ( empty($action) ) {
-		//@TODO : Redirect to not found page.
-		echo "Not Found.";
-		exit();
+		//Redirect to `404` page.
+		$controller->errorPage();
+	} else {
+		//and use `$action` for function name.
+		$controller->$action();
 	}
 
-	include 'header.php';
-	//Create `controller` object.
-	//and use `$action` for function name.
-	$controller = new Controller();
-	$controller->$action();
+	include 'templates/footer.php';
 
-	include 'footer.php';
 ?>
