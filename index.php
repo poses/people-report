@@ -1,22 +1,27 @@
 <?php
 	/**
-	 * Main index file of project
+	 * Main page and landing of project.
 	 *
-	 * @copyright Licenced for Shapphire Company Limited.
+	 * @copyright 2013 use for personal only.
 	 * @author Ting <ichaiwut.s@gmail.com>
-	 * @since 6 July 2013
+	 * @since 8 July 2013
 	 */
 
-	//Include **important** files.
-	require 'include/function.php'; //Function will store every process.
-	include 'layout/header.php'
+	require('controller.php');
+	$action = $_GET['action'];
+
+	//If user not type any action redirect to _not found page_.
+	if ( empty($action) ) {
+		//@TODO : Redirect to not found page.
+		echo "Not Found.";
+		exit();
+	}
+
+	include 'header.php';
+	//Create `controller` object.
+	//and use `$action` for function name.
+	$controller = new Controller();
+	$controller->$action();
+
+	include 'footer.php';
 ?>
-
-<div class="main-container">
-	<h2>Content</h2>
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, ex, culpa debitis laudantium vitae cum veritatis quidem cumque expedita cupiditate mollitia fuga tenetur molestias amet eveniet porro iusto quisquam sequi.
-	</p>
-</div>
-
-<?php include 'layout/footer.php'; ?>
