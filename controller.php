@@ -19,7 +19,7 @@
 	     * @since 8 July 2013
 	     */
 	    public function index() {
-	    	$allData = $this->model->findAll();
+	    	$allData = $this->model->findAll('faceacc_access_type');
 	        require_once('templates/show-detail.tpl.php');
 	    }
 
