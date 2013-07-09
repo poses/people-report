@@ -37,6 +37,9 @@
 	    			$startTime,
 	    			$endTime
 	    		);
+
+	    	//find employee type
+	    	// $type = $this->model->findAll();
 	        require_once('templates/index.tpl.php');
 	    }
 
