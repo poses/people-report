@@ -19,7 +19,13 @@
 	     * @since 8 July 2013
 	     */
 	    public function index() {
-	    	$allData = $this->model->findAll('faceacc_access_type');
+	    	//Find data width between date.
+	    	$allData = $this->model->findWithDate(
+	    			'faceacc_log_sumperday',
+	    			'logDate',
+	    			'2011-01-03',
+	    			'2011-01-03'
+	    		);
 	        require_once('templates/show-detail.tpl.php');
 	    }
 

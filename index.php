@@ -20,7 +20,8 @@
 	//If user not type any action redirect to _not found page_.
 	if ( empty($action) ) {
 		//Redirect to `404` page.
-		$controller->errorPage();
+		//  - Second way : redirect to index page.
+		$controller->index();
 	} else {
 		//and use `$action` for function name.
 		$controller->$action();
