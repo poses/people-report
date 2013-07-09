@@ -111,3 +111,22 @@ h3 { font-size: 1.2em; }
 // ========================================
 // Layout
 // ========================================
+.main-container {
+    width: 1248px;
+    margin: 0 $au;
+}
+
+table.summary-table {
+    width: 100%;
+
+    td,
+    th {
+        border: 1px solid #aaa;
+    }
+
+    th {
+        padding: 10px;
+        background: #ccc;
+        font-weight: $bd;
+    }
+}

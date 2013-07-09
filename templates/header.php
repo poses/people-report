@@ -18,4 +18,4 @@
 		<header>
 			<h1>This is header</h1>
 		</header>
-		<section>
+		<section class="main-container">

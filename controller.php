@@ -17,16 +17,27 @@
 	     *
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     * @since 8 July 2013
+	     * @modify 9 July 2013 Find data with `start` and `end` date
 	     */
 	    public function index() {
+	    	//Set default start and end date.
+	    	$startTime = date('Y-m-d', strtotime('-1 day'));
+	    	$endTime = date('Y-m-d', time());
+	    	//If user select date.
+	    	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+	    		//assign value from `POST`
+	    		$startTime = $_POST['start_date'];
+	    		$endTime = $_POST['end_date'];
+	    	}
+
 	    	//Find data width between date.
 	    	$allData = $this->model->findWithDate(
 	    			'faceacc_log_sumperday',
 	    			'logDate',
-	    			'2011-01-03',
-	    			'2011-01-03'
+	    			$startTime,
+	    			$endTime
 	    		);
-	        require_once('templates/show-detail.tpl.php');
+	        require_once('templates/index.tpl.php');
 	    }
 
 
