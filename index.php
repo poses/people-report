@@ -15,16 +15,16 @@
 	$model = new Model();
 	$controller = new Controller($model);
 	$action = $_GET['action'];
+	$params = $_GET['id'];
 
 	include 'templates/header.php';
 	//If user not type any action redirect to _not found page_.
 	if ( empty($action) ) {
-		//Redirect to `404` page.
-		//  - Second way : redirect to index page.
+		//Redirect to index page.
 		$controller->index();
 	} else {
 		//and use `$action` for function name.
-		$controller->$action();
+		$controller->$action(($params) ? $params : '');
 	}
 
 	include 'templates/footer.php';

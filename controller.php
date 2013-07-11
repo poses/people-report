@@ -43,6 +43,11 @@
 	        require_once('templates/index.tpl.php');
 	    }
 
+	    public function viewDetail($id) {
+	    	$user = $this->model->findById('faceacc_officer', $id);
+	    	require_once('templates/show-detail.tpl.php');
+	    }
+
 
 	    /**
 	     * Throw all of error page to this function

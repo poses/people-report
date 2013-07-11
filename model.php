@@ -53,9 +53,33 @@
             $data->query('SET NAMES utf8');
             //Get data from database by use `BETWEEN`
             $sql = "SELECT * FROM $table
-                    WHERE $field BETWEEN '$startDate' AND '$endDate'";
+                    WHERE $field BETWEEN '$startDate' AND '$endDate' LIMIT 10";
 
             return $data->query($sql);
-    	}
+        }
+
+        /**
+         * File data in tabel using id to referrent.
+         *
+         * @param  String $table Table's name.
+         * @param  Integer $id   id for referrent
+         * @return Array All data in tabel
+         * @author Ting <ichaiwut.s@gmail.com>
+         * @since  11 July 2013
+         */
+        public function findById( $table, $id ) {
+            $data = $this->connect();
+            $data->query('SET NAMES utf8');
+
+            $sql = "SELECT * FROM $table WHERE officer_id='$id' ";
+            $userData = $data->query($sql);
+            //Arrange value in to array.
+            $user = array();
+            foreach ($userData as $vUser) {
+                $user[] = $vUser;
+            }
+
+            return $user;
+        }
 	}
 ?>

@@ -20,7 +20,11 @@
 		<?php foreach ( $allData as $value ) :?>
 			<tr>
 				<td><?php echo $value['officer_id']; ?></td>
-				<td><?php echo $value['firstname']; ?> <?php echo $value['surname']; ?></td>
+				<td>
+					<a href="?action=viewDetail&id=<?php echo $value['officer_id']; ?>">
+						<?php echo $value['firstname']; ?> <?php echo $value['surname']; ?>
+					</a>
+				</td>
 				<td><?php echo $value['position_name']; ?></td>
 				<td><?php echo $value['site_name']; ?></td>
 				<td><?php echo $value['time_late']; ?> นาที</td>
