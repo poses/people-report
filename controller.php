@@ -3,7 +3,6 @@
 	 * Controller for process this project.
 	 *
 	 * @author Ting <ichaiwut.s@gmail.com>
-	 * @since 8 July 2013
 	 */
 	class Controller {
 	    private $model;
@@ -16,8 +15,6 @@
 	     * Index page for project
 	     *
 	     * @author Ting <ichaiwut.s@gmail.com>
-	     * @since 8 July 2013
-	     * @modify 9 July 2013 Find data with `start` and `end` date
 	     */
 	    public function index() {
 	    	//Set default start and end date.
@@ -43,6 +40,11 @@
 	        require_once('templates/index.tpl.php');
 	    }
 
+	    /**
+	     * Show user detail on one person.
+	     * @param  integer $id user's id.
+	     * @author Ting <ichaiwut.s@gmail.com>
+	     */
 	    public function viewDetail($id) {
 	    	$user = $this->model->findById('faceacc_officer', $id);
 	    	require_once('templates/show-detail.tpl.php');

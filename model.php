@@ -9,7 +9,6 @@
         /**
          * Connect database using `PDO`
          * @author Ting <ichaiwut.s@gmail.com>
-         * @since  8 July 2013
          */
     	public function connect() {
     		global $db;
@@ -26,7 +25,6 @@
          * @param  String $table table name.
          * @return array - array of data.
          * @author Ting <ichaiwut.s@gmail.com>
-         * @since 9 July 2013
          */
     	public function findAll( $table ) {
             $data = $this->connect();
@@ -44,7 +42,6 @@
          * @param String $endDate end date
          * @return Array All data in the table.
          * @author Ting <ichaiwut.s@gmail.com>
-         * @since 9 July 2013
          */
         public function findWithDate( $table, $field, $startDate, $endDate ) {
             $data = $this->connect();
@@ -65,20 +62,23 @@
          * @param  Integer $id   id for referrent
          * @return Array All data in tabel
          * @author Ting <ichaiwut.s@gmail.com>
-         * @since  11 July 2013
          */
         public function findById( $table, $id ) {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
 
-            $sql = "SELECT * FROM $table WHERE officer_id='$id' ";
+            $sql = "SELECT * FROM $table
+                    INNER JOIN faceacc_log_sumperday ON
+                    faceacc_log_sumperday.officer_id=faceacc_officer.officer_id
+                    WHERE faceacc_log_sumperday.officer_id='$id'";
+
             $userData = $data->query($sql);
+
             //Arrange value in to array.
             $user = array();
             foreach ($userData as $vUser) {
                 $user[] = $vUser;
             }
-
             return $user;
         }
 	}
