@@ -13,7 +13,6 @@
 
 	    /**
 	     * Index page for project
-	     *
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
 	    public function index() {
@@ -21,22 +20,31 @@
 	    	$startTime = date('Y-m-d', strtotime('-1 day'));
 	    	$endTime = date('Y-m-d', time());
 	    	//If user select date.
-	    	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+	    	if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
 	    		//assign value from `POST`
-	    		$startTime = $_POST['start_date'];
-	    		$endTime = $_POST['end_date'];
+	    		$startTime = $_GET['start_date'];
+	    		$endTime = $_GET['end_date'];
 	    	}
+
+	    	//Count data for `$pages->limit`
+	    	$countAll = $this->model->countAll('faceacc_officer');
+	    	//Create paginate object.
+	    	require_once('paginate.php');
+            $pages = new Paginator;
+			$pages->mid_range = 9;
+			$pages->items_total = $countAll->fetchColumn();
+			$pages->paginate();
 
 	    	//Find data width between date.
 	    	$allData = $this->model->findWithDate(
 	    			'faceacc_log_sumperday',
+	    			'faceacc_officer',
 	    			'logDate',
 	    			$startTime,
-	    			$endTime
+	    			$endTime,
+	    			$pages->limit
 	    		);
 
-	    	//find employee type
-	    	// $type = $this->model->findAll();
 	        require_once('templates/index.tpl.php');
 	    }
 

@@ -40,19 +40,33 @@
          * @param String $field field name that you want to get data.
          * @param String $startDate start date
          * @param String $endDate end date
+         * @param String $limit limit to query
          * @return Array All data in the table.
          * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function findWithDate( $table, $field, $startDate, $endDate ) {
+        public function findWithDate( $table, $table2, $field, $startDate, $endDate, $limit ) {
             $data = $this->connect();
             //Set collation to `utf8` if import database
             //from another database.
             $data->query('SET NAMES utf8');
             //Get data from database by use `BETWEEN`
-            $sql = "SELECT * FROM $table
-                    WHERE $field BETWEEN '$startDate' AND '$endDate' LIMIT 10";
+            $sql = "SELECT * FROM $table INNER JOIN $table2 ON
+                    $table.officer_id=$table2.officer_id
+                    WHERE $field BETWEEN '$startDate' AND '$endDate'
+                    $limit";
 
             return $data->query($sql);
+        }
+
+        /**
+         * Count all row in table
+         *
+         * @param  string $table table's name
+         * @return array  PDO data.
+         */
+        public function countAll( $table ) {
+            $data = $this->connect();
+            return $data->query("SELECT COUNT(*) FROM $table");
         }
 
         /**
