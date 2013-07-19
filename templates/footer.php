@@ -7,9 +7,10 @@
 	 *
 	 */
 ?>
-		</section>
-		<footer>
-			<h2>This is footer</h2>
-		</footer>
+			</section>
+			<footer>
+				<h2>This is footer</h2>
+			</footer>
+		</div><!-- container -->
 	</body>
 </html>
