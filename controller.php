@@ -1,7 +1,7 @@
 <?php
 	/**
 	 * Controller for process this project.
-	 *
+	 * @version 1.0
 	 * @author Ting <ichaiwut.s@gmail.com>
 	 */
 	class Controller {
@@ -27,11 +27,17 @@
 	    	}
 
 	    	//Count data for `$pages->limit`
-	    	$countAll = $this->model->countAll('faceacc_officer');
+	    	$countAll = $this->model->countAll(
+	    			'faceacc_log_sumperday',
+	    			'faceacc_officer',
+	    			'logDate',
+	    			$startTime,
+	    			$endTime
+	    		);
 	    	//Create paginate object.
 	    	require_once('paginate.php');
             $pages = new Paginator;
-			$pages->mid_range = 9;
+			$pages->mid_range = 5;
 			$pages->items_total = $countAll->fetchColumn();
 			$pages->paginate();
 

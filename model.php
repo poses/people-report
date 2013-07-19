@@ -64,9 +64,14 @@
          * @param  string $table table's name
          * @return array  PDO data.
          */
-        public function countAll( $table ) {
+        public function countAll( $table, $table2, $field, $startDate, $endDate ) {
             $data = $this->connect();
-            return $data->query("SELECT COUNT(*) FROM $table");
+            $sql = "SELECT COUNT(*) FROM $table INNER JOIN $table2 ON
+                    $table.officer_id=$table2.officer_id
+                    WHERE $field BETWEEN '$startDate' AND '$endDate'
+                    ";
+
+            return $data->query($sql);
         }
 
         /**

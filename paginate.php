@@ -13,25 +13,23 @@ class Paginator{
 	var $default_ipp = 25;
 	var $querystring;
 
-	function Paginator()
-	{
+	public function Paginator() {
 		$this->current_page = 1;
 		$this->mid_range = 7;
-		$this->items_per_page = (!empty($_GET['ipp'])) ? $_GET['ipp']:$this->default_ipp;
+		$this->items_per_page = ( !empty($_GET['ipp']) ) ? $_GET['ipp'] : $this->default_ipp;
 	}
 
-	function paginate()
-	{
-		if($_GET['ipp'] == 'All')
-		{
-			$this->num_pages = ceil($this->items_total/$this->default_ipp);
+	public function paginate() {
+		if ( $_GET['ipp'] == 'All' ) {
+			$this->num_pages = ceil($this->items_total / $this->default_ipp);
 			$this->items_per_page = $this->default_ipp;
-		}
-		else
-		{
-			if(!is_numeric($this->items_per_page) OR $this->items_per_page <= 0) $this->items_per_page = $this->default_ipp;
+		} else {
+			if ( !is_numeric($this->items_per_page) || $this->items_per_page <= 0 ) {
+				$this->items_per_page = $this->default_ipp;
+			}
 			$this->num_pages = ceil($this->items_total/$this->items_per_page);
 		}
+
 		$this->current_page = (int) $_GET['page']; // must be numeric > 0
 		if($this->current_page < 1 Or !is_numeric($this->current_page)) $this->current_page = 1;
 		if($this->current_page > $this->num_pages) $this->current_page = $this->num_pages;
@@ -101,16 +99,14 @@ class Paginator{
 		$this->limit = ($_GET['ipp'] == 'All') ? "":" LIMIT $this->low,$this->items_per_page";
 	}
 
-	function display_items_per_page()
-	{
+	public function display_items_per_page() {
 		$items = '';
 		$ipp_array = array(10,25,50,100,'All');
 		foreach($ipp_array as $ipp_opt)	$items .= ($ipp_opt == $this->items_per_page) ? "<option selected value=\"$ipp_opt\">$ipp_opt</option>\n":"<option value=\"$ipp_opt\">$ipp_opt</option>\n";
 		return "<span class=\"paginate\">Items per page:</span><select class=\"paginate\" onchange=\"window.location='$_SERVER[PHP_SELF]?page=1&ipp='+this[this.selectedIndex].value+'$this->querystring';return false\">$items</select>\n";
 	}
 
-	function display_jump_menu()
-	{
+	public function display_jump_menu() {
 		for($i=1;$i<=$this->num_pages;$i++)
 		{
 			$option .= ($i==$this->current_page) ? "<option value=\"$i\" selected>$i</option>\n":"<option value=\"$i\">$i</option>\n";
@@ -118,8 +114,7 @@ class Paginator{
 		return "<span class=\"paginate\">Page:</span><select class=\"paginate\" onchange=\"window.location='$_SERVER[PHP_SELF]?page='+this[this.selectedIndex].value+'&ipp=$this->items_per_page$this->querystring';return false\">$option</select>\n";
 	}
 
-	function display_pages()
-	{
+	public function display_pages() {
 		return $this->return;
 	}
 }
