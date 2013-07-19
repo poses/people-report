@@ -168,3 +168,15 @@ table.summary-table {
         font-weight: $bd;
     }
 }
+
+.footer {
+    min-height: 100px;
+    padding: 10px;
+    background: #171717;
+
+    h2 { color: #ccc; }
+    p {
+        font-size: .8em;
+        color: #eee;
+    }
+}
