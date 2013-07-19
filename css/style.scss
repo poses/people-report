@@ -18,6 +18,7 @@ $r: right;
 $c: center;
 $bd: bold;
 $norm: normal;
+$color-link: #294F5F;
 
 @font-face {
     font-family: 'thai_sans_literegular';
@@ -151,7 +152,68 @@ h3 { font-size: 1.2em; }
 
 .main-container {
     margin: 0 $au;
-    padding: 10px;
+    padding: 20px;
+}
+
+//Team view
+.team-view {
+    padding-top: 10px;
+
+    h2 {
+        width: 45%;
+        font: $norm 2em $thaisans;
+        color: $color-link;
+    }
+
+    form.team-select {
+        width: 51%;
+
+        label {
+            display: $block;
+            width: 105px;
+            padding-right: 5px;
+            color: $color-link;
+            font: $bd .9em Arial, Sans-serif;
+            text-align: $r;
+
+            &.date-stop {
+                width: 60px;
+                padding: 0 0 0 8px;
+                text-align: $l;
+            }
+        }
+
+        input,
+        select {
+            display: $block;
+            margin: 0 0 10px;
+            padding: 3px;
+            border: 1px solid #ccc;
+            font-size: .9em;
+        }
+
+        select { width: 355px; }
+
+        input[type=date] {
+            display: $block;
+            max-width: 150px;
+        }
+
+        input[type=submit] {
+            position: relative;
+            right: -123px;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 3px;
+            @include gradientBg($startColor:#294F5F, $endColor:#005986);
+        }
+
+        input:disabled {
+            background: $no;
+            border: $no;
+        }
+    }
+
 }
 
 table.summary-table {
