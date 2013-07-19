@@ -1,7 +1,8 @@
 <?php
 	/**
 	 * Model :: Use for connect database.
-	 *
+	 * @package Maximize by 3Musketters
+     * @version 1.0
 	 * @author Ting <ichaiwut.s@gmail.com>
 	 * @since 8 July 2013
 	 */

@@ -1,6 +1,8 @@
 <?php
 	/**
 	 * Controller for process this project.
+	 *
+	 * @package Maximize by 3Musketters
 	 * @version 1.0
 	 * @author Ting <ichaiwut.s@gmail.com>
 	 */
