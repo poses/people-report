@@ -23,7 +23,7 @@
 		<input type="text" name="employee-type" id="employee-type" disabled>
 
 		<div class="clearfix"></div>
-		<label for="employee-type">ฝ่าย</label>
+		<label for="employee-type">แผนก</label>
 		<select name="employee-cat" id="employee-cat">
 			<option value="1">Organization Improvement</option>
 		</select>
@@ -35,19 +35,50 @@
 		<input type="submit" name="submit" value="ค้นหา">
 	</form>
 	<div class="clearfix"></div>
-
+	<hr>
 	<table class="summary-table">
 		<thead>
 			<tr>
 				<th>ลำดับ</th>
 				<th>ชื่อ-สกุล</th>
 				<th>ตำแหน่ง</th>
-				<th>แผนก</th>
-				<th>สาย(นาทีี)</th>
-				<th>สาย(ครั้ง)</th>
+				<th>สาย</th>
+				<th>สาย</th>
+				<th>ขาด</th>
+				<th>ลากิจ</th>
+				<th>ลาป่วย</th>
+				<th>พักร้อน</th>
+				<th>ลาคลอด</th>
+				<th>พักร้อน</th>
+				<th>ลาบวช</th>
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>ครั้ง</td>
+				<td>นาที</td>
+				<td class="allowed">สิทธิ</td>
+				<td class="use">ใช้</td>
+				<td class="remain">เหลือ</td>
+				<td class="allowed">สิทธิ</td>
+				<td class="use">ใช้</td>
+				<td class="remain">เหลือ</td>
+				<td class="allowed">สิทธิ</td>
+				<td class="use">ใช้</td>
+				<td class="remain">เหลือ</td>
+				<td class="allowed">สิทธิ</td>
+				<td class="use">ใช้</td>
+				<td class="remain">เหลือ</td>
+				<td class="allowed">สิทธิ</td>
+				<td class="use">ใช้</td>
+				<td class="remain">เหลือ</td>
+				<td class="allowed">สิทธิ</td>
+				<td class="use">ใช้</td>
+				<td class="remain">เหลือ</td>
+			</tr>
 			<?php foreach ( $allData as $value ) :?>
 				<tr>
 					<td><?php echo $value['officer_id']; ?></td>
@@ -56,10 +87,27 @@
 							<?php echo $value['firstname']; ?> <?php echo $value['surname']; ?>
 						</a>
 					</td>
-					<td><?php echo $value['position_name']; ?></td>
 					<td><?php echo $value['site_name']; ?></td>
-					<td><?php echo $value['time_late']; ?> นาที</td>
-					<td><?php echo $value['time_late']; ?> นาที</td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td><?php echo $value['time_late']; ?></td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>

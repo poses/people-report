@@ -214,6 +214,13 @@ h3 { font-size: 1.2em; }
         }
     }
 
+    hr {
+        height: 5px;
+        width: 100%;
+        margin-bottom: 20px;
+        background: $color-link;
+        border: $no;
+    }
 }
 
 table.summary-table {
@@ -221,13 +228,64 @@ table.summary-table {
 
     td,
     th {
-        border: 1px solid #aaa;
+        border: 1px solid #ccc;
+        font-size: .8em;
     }
 
     th {
-        padding: 10px;
-        background: #ccc;
+        padding: 5px 3px;
         font-weight: $bd;
+        @include gradientBg($startColor: #fff, $endColor: #DDDACB);
+    }
+
+    td {
+        padding: 5px;
+        overflow: hidden;
+        text-align: $c;
+
+        &:first-child {
+            width: 35px;
+        }
+
+        &:nth-child(2) { width: 190px;}
+        &:nth-child(2),
+        &:nth-child(3) { text-align: $l; }
+
+        &:nth-child(3) { width: 130px; }
+        &:nth-child(4),
+        &:nth-child(5) { width: 30px; }
+
+        &:nth-child(6),
+        &:nth-child(7),
+        &:nth-child(8),
+        &:nth-child(9),
+        &:nth-child(10),
+        &:nth-child(11),
+        &:nth-child(12),
+        &:nth-child(13),
+        &:nth-child(14),
+        &:nth-child(15),
+        &:nth-child(16),
+        &:nth-child(17),
+        &:nth-child(18),
+        &:nth-child(19),
+        &:nth-child(20),
+        &:nth-child(21),
+        &:nth-child(22),
+        &:nth-child(23) {
+            // min-width: 30px!important;
+        }
+
+        &.allowed { color: #FA9600; }
+        &.use {
+            background: #3C6576;
+            color: #fff;
+        }
+        &.remain {
+            background: #002E40;
+            color: #fff;
+        }
+
     }
 }
 

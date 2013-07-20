@@ -9,7 +9,7 @@
 	class Controller {
 	    private $model;
 
-	    public function __construct($model) {
+	    public function Controller($model) {
 	        $this->model = $model;
 	    }
 
