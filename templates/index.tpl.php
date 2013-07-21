@@ -13,10 +13,10 @@
 
 	<form action="?action=index" method="GET" class="team-select right">
 		<label for="start-team-date">ช่วงเวลา </label>
-		<input type="date" name="start_date" id="start_date" value="<?php echo $_GET['start_date']?>">
+		<input type="date" name="start_date" id="start_date" value="<?php echo $startTime; ?>">
 
 		<label for="end_date" class="date-stop">ถึงวันที่ </label>
-		<input type="date" name="end_date" id="end_date" class="date-stop" value="<?php echo $_GET['end_date']?>">
+		<input type="date" name="end_date" id="end_date" class="date-stop" value="<?php echo $endTime; ?>">
 
 		<div class="clearfix"></div>
 		<label for="employee-type">ประเภทพนักงาน</label>

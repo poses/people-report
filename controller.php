@@ -21,8 +21,9 @@
 	    	//Set default start and end date.
 	    	$startTime = date('Y-m-d', strtotime('-1 day'));
 	    	$endTime = date('Y-m-d', time());
+
 	    	//If user select date.
-	    	if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
+	    	if ( !empty($_GET['start_date']) && !empty($_GET['end_date']) ) {
 	    		//assign value from `POST`
 	    		$startTime = $_GET['start_date'];
 	    		$endTime = $_GET['end_date'];
