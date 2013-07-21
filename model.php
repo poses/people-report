@@ -83,6 +83,12 @@
             return $data->query($sql);
         }
 
+        /**
+         * Get number fo allowed day-off
+         *
+         * @return integer $dataLimit nomber of allowed times.
+         * @author TIng <ichaiwut.s@gmail.com>
+         */
         public function findAccessTypeLimit() {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
@@ -94,6 +100,27 @@
             }
 
             return $dataLimit;
+        }
+
+        /**
+         * Count late on each person
+         *
+         * @param  integer $officerId person id.
+         * @param  date $startDate start date.
+         * @param  date $endDate   end date.
+         * @return integer number of allowed times.
+         * @author Ting <iChaiwut.s@gmail.com>
+         */
+        public function latePerTimes( $officerId, $startDate, $endDate ) {
+            $data = $this->connect();
+            $sql = "SELECT COUNT(*) FROM faceacc_log_sumperday
+                    WHERE officer_id=$officerId
+                    AND time_late<>0
+                    AND logDate BETWEEN '$startDate' AND '$endDate'
+                    ";
+
+            $timeLate = $data->query($sql);
+            return $timeLate->fetchColumn();
         }
 
         /**

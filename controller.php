@@ -41,8 +41,15 @@
 	    	//Find data width between date.
 	    	$allData = $this->model->findOfficer(false, $pages->limit);
 
+	    	$people = array();
+	    	foreach ($allData as $kData => $vData) {
+	    		$people[] = $vData;
+ 	    		$people[$kData]['late'] = $this->model->latePerTimes($vData['officer_id'], $startTime, $endTime);
+	    	}
+
 	    	//Find access type
     		$accessTypeLimit = $this->model->findAccessTypeLimit();
+
 
 	        require_once('templates/index.tpl.php');
 	    }

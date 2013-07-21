@@ -79,7 +79,7 @@
 				<td class="use">ใช้</td>
 				<td class="remain">เหลือ</td>
 			</tr>
-			<?php foreach ( $allData as $value ) :?>
+			<?php foreach ( $people as $value ) :?>
 				<tr>
 					<td><?php echo $value['officer_id']; ?></td>
 					<td>
@@ -88,7 +88,7 @@
 						</a>
 					</td>
 					<td><?php echo $value['site_name']; ?></td>
-					<td>2</td>
+					<td><?php echo $value['late']; ?></td>
 					<td><?php echo date('h', 0); ?></td>
 					<td>30</td>
 					<td>2</td>
