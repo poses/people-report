@@ -45,6 +45,7 @@
 	    	foreach ($allData as $kData => $vData) {
 	    		$people[] = $vData;
  	    		$people[$kData]['late'] = $this->model->latePerTimes($vData['officer_id'], $startTime, $endTime);
+	    		$people[$kData]['late_minute'] = $this->model->latePerMinute($vData['officer_id'], $startTime, $endTime);
 	    	}
 
 	    	//Find access type

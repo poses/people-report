@@ -89,7 +89,7 @@
 					</td>
 					<td><?php echo $value['site_name']; ?></td>
 					<td><?php echo $value['late']; ?></td>
-					<td><?php echo date('h', 0); ?></td>
+					<td><?php echo date('i', strtotime($value['late_minute'])); ?></td>
 					<td>30</td>
 					<td>2</td>
 					<td>2</td>

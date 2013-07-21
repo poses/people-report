@@ -124,6 +124,31 @@
         }
 
         /**
+         * Calculate minute of day-off for each person
+         *
+         * @param  integer $officerId person id.
+         * @param  date $startDate start date.
+         * @param  date $endDate   end date.
+         * @return integer number of minute (time stamps)
+         * @author Ting <iChaiwut.s@gmail.com>
+         */
+        public function latePerMinute( $officerId, $startDate, $endDate ) {
+            $data = $this->connect();
+            $sql = "SELECT time_late FROM faceacc_log_sumperday
+                    WHERE officer_id=$officerId
+                    AND logDate BETWEEN '$startDate' AND '$endDate'
+                    ";
+            $allMinutes = $data->query($sql);
+            //Mix value of time.
+            $timeMinute = 0;
+            foreach ( $allMinutes as $vMinute ) {
+                $timeMinute += $vMinute['time_late'];
+            }
+
+            return $timeMinute;
+        }
+
+        /**
          * File data in tabel using id to referrent.
          *
          * @param  String $table Table's name.
