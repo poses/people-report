@@ -24,19 +24,13 @@
 
 	    	//If user select date.
 	    	if ( !empty($_GET['start_date']) && !empty($_GET['end_date']) ) {
-	    		//assign value from `POST`
 	    		$startTime = $_GET['start_date'];
 	    		$endTime = $_GET['end_date'];
 	    	}
 
 	    	//Count data for `$pages->limit`
-	    	$countAll = $this->model->countAll(
-	    			'faceacc_log_sumperday',
-	    			'faceacc_officer',
-	    			'logDate',
-	    			$startTime,
-	    			$endTime
-	    		);
+	    	$countAll = $this->model->findOfficer(true);
+
 	    	//Create paginate object.
 	    	require_once('paginate.php');
             $pages = new Paginator;
@@ -45,14 +39,10 @@
 			$pages->paginate();
 
 	    	//Find data width between date.
-	    	$allData = $this->model->findWithDate(
-	    			'faceacc_log_sumperday',
-	    			'faceacc_officer',
-	    			'logDate',
-	    			$startTime,
-	    			$endTime,
-	    			$pages->limit
-	    		);
+	    	$allData = $this->model->findOfficer(false, $pages->limit);
+
+	    	//Find access type
+    		$accessTypeLimit = $this->model->findAccessTypeLimit();
 
 	        require_once('templates/index.tpl.php');
 	    }

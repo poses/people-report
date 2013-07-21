@@ -84,28 +84,28 @@
 					<td><?php echo $value['officer_id']; ?></td>
 					<td>
 						<a href="?action=viewDetail&id=<?php echo $value['officer_id']; ?>">
-							<?php echo $value['firstname']; ?> <?php echo $value['surname']; ?>
+							<?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname']; ?>
 						</a>
 					</td>
 					<td><?php echo $value['site_name']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
-					<td><?php echo $value['time_late']; ?></td>
+					<td>2</td>
+					<td><?php echo date('h', 0); ?></td>
+					<td>30</td>
 					<td>2</td>
 					<td>2</td>
+					<td><?php echo $accessTypeLimit[0]['type_limit']; ?></td>
 					<td>2</td>
 					<td>2</td>
+					<td><?php echo $accessTypeLimit[1]['type_limit']; ?></td>
 					<td>2</td>
 					<td>2</td>
+					<td><?php echo $accessTypeLimit[2]['type_limit']; ?></td>
 					<td>2</td>
 					<td>2</td>
+					<td><?php echo $accessTypeLimit[3]['type_limit']; ?></td>
 					<td>2</td>
+					<td>2</td>
+					<td><?php echo $accessTypeLimit[4]['type_limit']; ?></td>
 					<td>2</td>
 					<td>2</td>
 				</tr>

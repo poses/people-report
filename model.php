@@ -53,6 +53,7 @@
             //Get data from database by use `BETWEEN`
             $sql = "SELECT * FROM $table INNER JOIN $table2 ON
                     $table.officer_id=$table2.officer_id
+                    INNER JOIN tbl_prename ON $table.prename=tbl_prename.id
                     WHERE $field BETWEEN '$startDate' AND '$endDate'
                     $limit";
 
@@ -60,19 +61,39 @@
         }
 
         /**
-         * Count all row in table
+         * Fidd all user with `prename` of user.
          *
-         * @param  string $table table's name
-         * @return array  PDO data.
+         * @param  boolean $count will use `SELECT COUNT(*)` if value is TURE.
+         * @param  String $limit use for set `LIMIT` for mysql.
+         * @return Array group of data.
+         * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function countAll( $table, $table2, $field, $startDate, $endDate ) {
+        public function findOfficer( $count = false, $limit = '' ) {
+            //Ceck `$count` for select **All** or select **COUNT**.
+            //Use `SELECT COUNT(*)` for paginate the result.
+            $count = ($count) ? 'COUNT(*)' : '*';
+
             $data = $this->connect();
-            $sql = "SELECT COUNT(*) FROM $table INNER JOIN $table2 ON
-                    $table.officer_id=$table2.officer_id
-                    WHERE $field BETWEEN '$startDate' AND '$endDate'
-                    ";
+            $data->query('SET NAMES utf8');
+            $sql = "SELECT $count FROM faceacc_officer INNER JOIN tbl_prename ON
+                    faceacc_officer.prename=tbl_prename.id
+                    ORDER BY faceacc_officer.officer_id ASC
+                    $limit";
 
             return $data->query($sql);
+        }
+
+        public function findAccessTypeLimit() {
+            $data = $this->connect();
+            $data->query('SET NAMES utf8');
+            $accessLimit = $data->query('SELECT * FROM faceacc_access_type WHERE type_limit <> 0');
+
+            $dataLimit = array();
+            foreach ( $accessLimit as $kLimit => $vLimit) {
+                $dataLimit[$kLimit] = $vLimit;
+            }
+
+            return $dataLimit;
         }
 
         /**
