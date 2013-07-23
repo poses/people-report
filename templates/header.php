@@ -22,7 +22,7 @@
 			<nav class="top-nav">
 				<ul class="alignright">
 					<li>
-						<a href="#">
+						<a href="?action=index">
 							Home <br>
 							<small>หน้าแรก</small>
 						</a>

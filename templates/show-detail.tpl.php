@@ -71,8 +71,8 @@
 				<td><?php echo $accessTypeLimit[2]['type_limit']; ?></td>
 				<td><?php echo $accessTypeLimit[4]['type_limit']; ?></td>
 				<td><?php echo $accessTypeLimit[6]['type_limit']; ?></td>
-				<td><?php echo $accessTypeLimit[7]['type_limit']; ?></td>
-				<td><?php echo $accessTypeLimit[8]['type_limit']; ?></td>
+				<td><?php echo ($accessTypeLimit[7]['type_limit']) ?: '0'; ?></td>
+				<td><?php echo ($accessTypeLimit[8]['type_limit']) ?: '0'; ?></td>
 				<td><?php echo $accessTypeLimit['All']; ?></td>
 			</tr>
 			<tr>

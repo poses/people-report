@@ -88,6 +88,14 @@
 
 	    	//Find access type and calculate all of access type limit.
     		$accessTypeLimit = $this->model->findAccessTypeLimit();
+
+			if ( $user[0]['gender'] == 1 ) {
+				unset($accessTypeLimit[7]);
+			} else {
+				unset($accessTypeLimit[8]);
+			}
+
+
     		$accessTypeLimit['All'] = 1;
     		foreach ($accessTypeLimit as $kAll => $vAll) {
     			$accessTypeLimit['All'] += $vAll['type_limit'];
@@ -95,8 +103,6 @@
 
     		$lateWithType = $this->model->lateWithType( $id, $startTime, $endTime);
     		foreach ( $lateWithType as $kType => $vType ) {
-
-
     			foreach ( $accessTypeLimit as $kAccess => $vAccess) {
 					if ( $vAccess['access_type_id'] == $vType ) {
 						$countOff[$vAccess['access_type_id']] = ( $countOff[$vAccess['access_type_id']] < 1 ) ? 1 : $countOff[$vAccess['access_type_id']] += 1;
