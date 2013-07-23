@@ -22,45 +22,6 @@
     	}
 
         /**
-         * Get all content from table
-         * @param  String $table table name.
-         * @return array - array of data.
-         * @author Ting <ichaiwut.s@gmail.com>
-         */
-    	public function findAll( $table ) {
-            $data = $this->connect();
-    		$data->query('SET NAMES utf8');
-            $sql = "SELECT * FROM $table";
-            return $data->query($sql);
-        }
-
-        /**
-         * Get content from table by usig `BETWEEN`
-         *
-         * @param String $table Table that you want to get data.
-         * @param String $field field name that you want to get data.
-         * @param String $startDate start date
-         * @param String $endDate end date
-         * @param String $limit limit to query
-         * @return Array All data in the table.
-         * @author Ting <ichaiwut.s@gmail.com>
-         */
-        public function findWithDate( $table, $table2, $field, $startDate, $endDate, $limit ) {
-            $data = $this->connect();
-            //Set collation to `utf8` if import database
-            //from another database.
-            $data->query('SET NAMES utf8');
-            //Get data from database by use `BETWEEN`
-            $sql = "SELECT * FROM $table INNER JOIN $table2 ON
-                    $table.officer_id=$table2.officer_id
-                    INNER JOIN tbl_prename ON $table.prename=tbl_prename.id
-                    WHERE $field BETWEEN '$startDate' AND '$endDate'
-                    $limit";
-
-            return $data->query($sql);
-        }
-
-        /**
          * Fidd all user with `prename` of user.
          *
          * @param  boolean $count will use `SELECT COUNT(*)` if value is TURE.
