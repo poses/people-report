@@ -119,6 +119,7 @@
                     ";
 
             $dayOffType = $data->query($sql);
+
             $type = array();
             foreach ($dayOffType as $kType => $vType) {
                 $type[$kType] = $vType['access_type_id'];
@@ -130,19 +131,17 @@
         /**
          * File data in tabel using id to referrent.
          *
-         * @param  String $table Table's name.
          * @param  Integer $id   id for referrent
          * @return Array All data in tabel
          * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function findById( $table, $id ) {
+        public function findById( $id ) {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
 
-            $sql = "SELECT * FROM $table
-                    INNER JOIN faceacc_log_sumperday ON
-                    faceacc_log_sumperday.officer_id=faceacc_officer.officer_id
-                    WHERE faceacc_log_sumperday.officer_id='$id'";
+            $sql = "SELECT * FROM faceacc_officer INNER JOIN tbl_prename ON
+                    faceacc_officer.prename=tbl_prename.id
+                    WHERE faceacc_officer.officer_id='$id'";
 
             $userData = $data->query($sql);
 
@@ -151,6 +150,7 @@
             foreach ($userData as $vUser) {
                 $user[] = $vUser;
             }
+
             return $user;
         }
 	}

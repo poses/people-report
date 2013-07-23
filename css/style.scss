@@ -213,14 +213,14 @@ h3 { font-size: 1.2em; }
             border: $no;
         }
     }
+}
 
-    hr {
-        height: 5px;
-        width: 100%;
-        margin-bottom: 20px;
-        background: $color-link;
-        border: $no;
-    }
+hr {
+    height: 5px;
+    width: 100%;
+    margin-bottom: 20px;
+    background: $color-link;
+    border: $no;
 }
 
 table.summary-table {
@@ -288,6 +288,111 @@ table.summary-table {
 
     }
 }
+
+.user-detail {
+    .user-desc {
+        width: 50%;
+        overflow: hidden;
+
+        img {
+            margin-right: 10px;
+            max-width: 140px;
+            max-height: 140px;
+        }
+
+        .mini-desc { width: 310px; }
+
+        p {
+            margin-top: 0;
+            font-size: .9em;
+        }
+
+        strong {
+            display: $block;
+            width: 60px;
+            margin-right: 10px;
+            text-align: $r;
+            color: $color-link;
+        }
+    }
+
+    form.user-detail-date {
+        label,
+        .form-label {
+            display: $block;
+            margin: 0 10px;
+            color: $color-link;
+            font: $bd .9em Arial, Sans-serif;
+        }
+
+        input[type=date],
+        input[type=submit] {
+            padding: 3px 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type=submit] {
+            margin-left: 5px;
+            padding: 5px;
+        }
+    }
+
+    table.detail-table {
+        margin-top: 30px;
+        width: 100%;
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            font: $bd 1em Arial, Sans-serif;
+            color: $color-link;
+            @include gradientBg($startColor: #fff, $endColor: #DDDACB);
+
+        }
+
+        td {
+            font-size: .9em;
+
+            &:first-child { width: 300px;  }
+
+            &:nth-child(n+2) {
+                width: 80px;
+                text-align: $c;
+            }
+
+            &:last-child {
+                width: 150px;
+                font-weight: $bd;
+            }
+        }
+
+        tr:last-child td {
+            text-align: $c;
+            font-size: 1.2em;
+
+            &:first-child {
+                font-weight: $bd;
+                color: $color-link;
+            }
+
+            &:nth-child(n+2) {
+                font-weight: $bd;
+                color: #FA9600;
+            }
+        }
+
+        tr.remain-date td:nth-child(n+2) {
+            font-weight: $bd;
+            color: #FA9600;
+        }
+    }
+}
+
+.form-label { display: $block; }
 
 .footer {
     min-height: 100px;

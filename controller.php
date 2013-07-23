@@ -74,10 +74,45 @@
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
 	    public function viewDetail($id) {
-	    	$user = $this->model->findById('faceacc_officer', $id);
+	    	$user = $this->model->findById($id);
+
+	    	//Set default start and end date.
+	    	$startTime = date('Y-m-d', strtotime('-1 day'));
+	    	$endTime = date('Y-m-d', time());
+
+	    	//If user select date.
+	    	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+	    		$startTime = $_POST['startDate'];
+	    		$endTime = $_POST['endDate'];
+	    	}
+
+	    	//Find access type and calculate all of access type limit.
+    		$accessTypeLimit = $this->model->findAccessTypeLimit();
+    		$accessTypeLimit['All'] = 1;
+    		foreach ($accessTypeLimit as $kAll => $vAll) {
+    			$accessTypeLimit['All'] += $vAll['type_limit'];
+    		}
+
+    		$lateWithType = $this->model->lateWithType( $id, $startTime, $endTime);
+    		foreach ( $lateWithType as $kType => $vType ) {
+
+
+    			foreach ( $accessTypeLimit as $kAccess => $vAccess) {
+					if ( $vAccess['access_type_id'] == $vType ) {
+						$countOff[$vAccess['access_type_id']] = ( $countOff[$vAccess['access_type_id']] < 1 ) ? 1 : $countOff[$vAccess['access_type_id']] += 1;
+						$lateWithType['off-' . $vAccess['access_type_id']] = $countOff[$vAccess['access_type_id']];
+						unset($lateWithType[$kType]);
+					}
+    			}
+    		}
+
+    		$countAll = 0;
+    		foreach ( $lateWithType as $kLate => $vLate) {
+    			$countAll += $vLate;
+    		}
+
 	    	require_once('templates/show-detail.tpl.php');
 	    }
-
 
 	    /**
 	     * Throw all of error page to this function
