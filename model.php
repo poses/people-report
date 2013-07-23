@@ -96,7 +96,7 @@
 
             $dataLimit = array();
             foreach ( $accessLimit as $kLimit => $vLimit) {
-                $dataLimit[$kLimit] = $vLimit;
+                $dataLimit[$vLimit['access_type_id']] = $vLimit;
             }
 
             return $dataLimit;
@@ -146,6 +146,24 @@
             }
 
             return $timeMinute;
+        }
+
+        public function lateWithType( $officerId, $startDate, $endDate ) {
+            $data = $this->connect();
+            $sql = "SELECT * FROM faceacc_log_sumperday
+                    WHERE officer_id=$officerId
+                    AND time_late<>0
+                    AND access_type_id<>3
+                    AND logDate BETWEEN '$startDate' AND '$endDate'
+                    ";
+
+            $dayOffType = $data->query($sql);
+            $type = array();
+            foreach ($dayOffType as $kType => $vType) {
+                $type[$kType] = $vType['access_type_id'];
+            }
+
+            return $type;
         }
 
         /**

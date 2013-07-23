@@ -41,16 +41,29 @@
 	    	//Find data width between date.
 	    	$allData = $this->model->findOfficer(false, $pages->limit);
 
+	    	//Find access type
+    		$accessTypeLimit = $this->model->findAccessTypeLimit();
+
+    		//This variable will keep these data:
+    		//     - Late per time : see `Model::larePerTimes()`.
+    		//     - Late per minute : see `Model::latePerMinute()`.
+    		//     - Late with type : see `Model::lateWithType()`.
 	    	$people = array();
 	    	foreach ($allData as $kData => $vData) {
 	    		$people[] = $vData;
  	    		$people[$kData]['late'] = $this->model->latePerTimes($vData['officer_id'], $startTime, $endTime);
 	    		$people[$kData]['late_minute'] = $this->model->latePerMinute($vData['officer_id'], $startTime, $endTime);
+	    		$people[$kData]['late_with_type'] = $this->model->lateWithType($vData['officer_id'], $startTime, $endTime);
+	    		//Find data and count put to the same `access type`.
+	    		foreach ( $people[$kData]['late_with_type'] as $kType => $vType ) {
+	    			foreach ( $accessTypeLimit as $kAccess => $vAccess) {
+						if ( $vAccess['access_type_id'] == $vType ) {
+							$countOff[$vAccess['access_type_id']] = ( $countOff[$vAccess['access_type_id']] < 1 ) ? 1 : $countOff[$vAccess['access_type_id']] += 1;
+							$people[$kData]['late_with_type']['off-' . $vAccess['access_type_id']] = $countOff[$vAccess['access_type_id']];
+						}
+	    			}
+	    		}
 	    	}
-
-	    	//Find access type
-    		$accessTypeLimit = $this->model->findAccessTypeLimit();
-
 
 	        require_once('templates/index.tpl.php');
 	    }

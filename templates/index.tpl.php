@@ -90,24 +90,30 @@
 					<td><?php echo $value['site_name']; ?></td>
 					<td><?php echo $value['late']; ?></td>
 					<td><?php echo date('i', strtotime($value['late_minute'])); ?></td>
+
 					<td>30</td>
 					<td>2</td>
-					<td>2</td>
-					<td><?php echo $accessTypeLimit[0]['type_limit']; ?></td>
-					<td>2</td>
-					<td>2</td>
-					<td><?php echo $accessTypeLimit[1]['type_limit']; ?></td>
-					<td>2</td>
-					<td>2</td>
+					<td>28</td>
+
 					<td><?php echo $accessTypeLimit[2]['type_limit']; ?></td>
-					<td>2</td>
-					<td>2</td>
-					<td><?php echo $accessTypeLimit[3]['type_limit']; ?></td>
-					<td>2</td>
-					<td>2</td>
-					<td><?php echo $accessTypeLimit[4]['type_limit']; ?></td>
-					<td>2</td>
-					<td>2</td>
+					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[2]['access_type_id']]) ?: 0; ?></td>
+					<td><?php echo $accessTypeLimit[2]['type_limit'] - $value['late_with_type']['off-' . $accessTypeLimit[2]['access_type_id']]; ?></td>
+
+					<td><?php echo $accessTypeLimit[4]['type_limit'] ?></td>
+					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[4]['access_type_id']]) ?: 0; ?></td>
+					<td><?php echo $accessTypeLimit[4]['type_limit'] - $value['late_with_type']['off-' . $accessTypeLimit[4]['access_type_id']]; ?></td>
+
+					<td><?php echo $accessTypeLimit[6]['type_limit']; ?></td>
+					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
+					<td><?php echo $accessTypeLimit[6]['type_limit'] -  $value['late_with_type']['off-' . $accessTypeLimit[6]['access_type_id']]; ?></td>
+
+					<td><?php echo $accessTypeLimit[7]['type_limit']; ?></td>
+					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[7]['access_type_id']]) ?: 0; ?></td>
+					<td><?php echo $accessTypeLimit[7]['type_limit'] -  $value['late_with_type']['off-' . $accessTypeLimit[7]['access_type_id']]; ?></td>
+
+					<td><?php echo $accessTypeLimit[8]['type_limit']; ?></td>
+					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[8]['access_type_id']]) ?: 0; ?></td>
+					<td><?php echo $accessTypeLimit[8]['type_limit'] -  $value['late_with_type']['off-' . $accessTypeLimit[8]['access_type_id']]; ?></td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
