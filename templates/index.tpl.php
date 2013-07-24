@@ -82,7 +82,7 @@
 				<tr>
 					<td><?php echo $value['officer_id']; ?></td>
 					<td>
-						<a href="?action=viewDetail&id=<?php echo $value['officer_id']; ?>">
+						<a href="?action=viewDetail&id=<?php echo $value['officer_id']; ?>" title="<?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname']; ?>">
 							<?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname']; ?>
 						</a>
 					</td>

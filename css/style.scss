@@ -243,17 +243,17 @@ table.summary-table {
         overflow: hidden;
         text-align: $c;
 
-        &:first-child {
-            width: 35px;
-        }
+        &:first-child { width: 35px; }
 
-        &:nth-child(2) { width: 190px;}
         &:nth-child(2),
         &:nth-child(3) { text-align: $l; }
+        // &:nth-child(2) { width: 800px;}
 
-        &:nth-child(3) { width: 130px; }
-        &:nth-child(4),
-        &:nth-child(5) { width: 30px; }
+        &:nth-child(n+4) {
+            width: 32px !important;
+            padding: 2px;
+        }
+
 
 
         &.allowed { color: #FA9600; }
