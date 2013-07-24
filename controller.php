@@ -116,6 +116,8 @@
     			}
     		}
 
+    		$positionName = $this->model->getPosition($id);
+
 	    	require_once('templates/show-detail.tpl.php');
 			include 'templates/footer.php';
 	    }

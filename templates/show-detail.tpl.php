@@ -21,7 +21,7 @@
 			</p>
 			<p>
 				<strong>ตำแหน่ง</strong>
-				<span>-</span>
+				<span><?php echo $positionName; ?></span>
 			</p>
 			<p>
 				<strong>แผนก</strong>

@@ -223,8 +223,16 @@ hr {
     border: $no;
 }
 
+tr:nth-child(even) {
+    background-color: #efefef;
+}
+
 table.summary-table {
     width: 100%;
+
+    tr:nth-child(even) {
+        background-color: #efefef;
+    }
 
     td,
     th {
@@ -247,14 +255,11 @@ table.summary-table {
 
         &:nth-child(2),
         &:nth-child(3) { text-align: $l; }
-        // &:nth-child(2) { width: 800px;}
 
         &:nth-child(n+4) {
             width: 32px !important;
-            padding: 2px;
+            padding: 5px 2px;
         }
-
-
 
         &.allowed { color: #FA9600; }
         &.use {
