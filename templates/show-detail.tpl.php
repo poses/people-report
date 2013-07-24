@@ -1,8 +1,3 @@
-<?php
-	// echo "<pre>";
-	// print_r($user);
-	// echo "</pre>";
-?>
 <div class="user-detail">
 	<div class="user-desc right">
 		<!--
@@ -97,14 +92,17 @@
 		<!-- Render underscore template here -->
 	</table>
 </div>
+
+<!-- Create underscore template for render day off detail. -->
 <script type="text/html" id="js-list-dayoff">
 	<thead>
-			<tr>
-				<th>ประเภท</th>
-				<th>วัน และวันที่หมายเหตุการลา</th>
-			</tr>
+		<tr>
+			<th>ประเภท</th>
+			<th>วัน และวันที่หมายเหตุการลา</th>
+		</tr>
 	</thead>
 	<tbody >
+		//Loop the data.
 	    <%  _.each(response, function(values) { %>
 	    	<tr>
 	    		<td><%= values.access_type_name %></td>
@@ -115,20 +113,21 @@
 	    <% });%>
 	</tbody>
 </script>
+
 <script>
 	$(function() {
 		$('table.detail-table tr:nth-child(2) td').on('click', function() {
-			console.log($(this).data());
-
+			//User `underscore` to create template for day off detail.
 			$.getJSON('?action=getDayOff&userId=<?php echo $id;?>&startDate=<?php echo $startTime?>&endDate=<?php echo $endTime?>',
-				$(this).data(),
+				$(this).data(), //Second params is `data`
 				function(data) {
-					console.log(data);
+					//If not found any data just don't show any thing.
 					if ( data.length === 0 ) {
                         $("#list-dayoff").html('');
                     } else {
+                    	//crete `undersocer` template.
                         var template = $("#js-list-dayoff").html();
-                        $("#list-dayoff").html( _.template(template, { response : data}) );
+                        $("#list-dayoff").html( _.template(template, {response : data}) );
                     }
 			});
 		});

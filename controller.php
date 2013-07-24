@@ -122,17 +122,24 @@
 			include 'templates/footer.php';
 	    }
 
+	    /**
+	     * Get day-off detail
+	     *
+	     * @return json day off data.
+	     * @author Ting <ichaiwut.s@gmail.com>
+	     */
 	    public function getDayOff() {
+	    	//Set content type for `json`
 			header('Content-Type: application/json');
-
+			//If user not sent `id` return `false`
 	    	if ( empty($_GET['accessId']) || $_GET['accessId'] == 0 ) {
 	    		return json_encode(false);
 	    	}
-
+	    	//Find day off detail.
 	    	$dayOff = $this->model->getDayOffByUser($_GET['userId'], $_GET['accessId'], $_GET['startDate'], $_GET['endDate']);
-
+	    	//convert date format.
 	    	foreach ( $dayOff as $kOff => $vOff ) {
-	    			$dayOff[$kOff]['logDate'] = date('d F Y', strtotime($vOff['logDate']));
+				$dayOff[$kOff]['logDate'] = date('d F Y', strtotime($vOff['logDate']));
 	    	}
 
 	    	echo json_encode($dayOff);

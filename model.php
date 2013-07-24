@@ -109,6 +109,15 @@
             return $timeMinute;
         }
 
+        /**
+         * Get all late of user in each type.
+         *
+         * @param  int $officerId user id.
+         * @param  date $startDate start date.
+         * @param  date $endDate end date.
+         * @return arary group of data.
+         * @author Ting <ichaiwut.s@gmail.com>
+         */
         public function lateWithType( $officerId, $startDate, $endDate ) {
             $data = $this->connect();
             $sql = "SELECT * FROM faceacc_log_sumperday
@@ -127,6 +136,13 @@
             return $type;
         }
 
+        /**
+         * Get position of user
+         *
+         * @param  integer $id user id
+         * @return string return position name.
+         * @author Ting <ichaiwut.s@gmail.com>
+         */
         public function getPosition( $id ) {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
@@ -142,7 +158,6 @@
             $position = $positionName[0]['position_name'];
 
             return $position;
-
         }
 
         /**
