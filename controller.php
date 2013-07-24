@@ -112,11 +112,6 @@
     			}
     		}
 
-    		$countAll = 0;
-    		foreach ( $lateWithType as $kLate => $vLate) {
-    			$countAll += $vLate;
-    		}
-
 	    	require_once('templates/show-detail.tpl.php');
 	    }
 

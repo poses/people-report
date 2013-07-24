@@ -255,26 +255,6 @@ table.summary-table {
         &:nth-child(4),
         &:nth-child(5) { width: 30px; }
 
-        &:nth-child(6),
-        &:nth-child(7),
-        &:nth-child(8),
-        &:nth-child(9),
-        &:nth-child(10),
-        &:nth-child(11),
-        &:nth-child(12),
-        &:nth-child(13),
-        &:nth-child(14),
-        &:nth-child(15),
-        &:nth-child(16),
-        &:nth-child(17),
-        &:nth-child(18),
-        &:nth-child(19),
-        &:nth-child(20),
-        &:nth-child(21),
-        &:nth-child(22),
-        &:nth-child(23) {
-            // min-width: 30px!important;
-        }
 
         &.allowed { color: #FA9600; }
         &.use {
@@ -363,31 +343,6 @@ table.summary-table {
                 width: 80px;
                 text-align: $c;
             }
-
-            &:last-child {
-                width: 150px;
-                font-weight: $bd;
-            }
-        }
-
-        tr:last-child td {
-            text-align: $c;
-            font-size: 1.2em;
-
-            &:first-child {
-                font-weight: $bd;
-                color: $color-link;
-            }
-
-            &:nth-child(n+2) {
-                font-weight: $bd;
-                color: #FA9600;
-            }
-        }
-
-        tr.remain-date td:nth-child(n+2) {
-            font-weight: $bd;
-            color: #FA9600;
         }
     }
 }

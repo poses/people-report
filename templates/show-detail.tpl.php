@@ -61,7 +61,6 @@
 				<th>ลาพักร้อน</th>
 				<th>ลาคลอด </th>
 				<th>ลาบวช</th>
-				<th>รวม</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -73,7 +72,6 @@
 				<td><?php echo $accessTypeLimit[6]['type_limit']; ?></td>
 				<td><?php echo ($accessTypeLimit[7]['type_limit']) ?: '0'; ?></td>
 				<td><?php echo ($accessTypeLimit[8]['type_limit']) ?: '0'; ?></td>
-				<td><?php echo $accessTypeLimit['All']; ?></td>
 			</tr>
 			<tr>
 				<td>ลาไปแล้ว</td>
@@ -83,7 +81,6 @@
 				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
 				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]) ?: 0; ?></td>
 				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo $countAll; ?></td>
 			</tr>
 			<tr class="remain-date">
 				<td>วันลาคงเหลือ</td>
@@ -93,17 +90,6 @@
 				<td><?php echo $accessTypeLimit[6]['type_limit'] - ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
 				<td><?php echo $accessTypeLimit[7]['type_limit'] - ($lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]) ?: 0; ?></td>
 				<td><?php echo $accessTypeLimit[8]['type_limit'] - ($lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo $accessTypeLimit['All'] - $countAll ?></td>
-			</tr>
-			<tr>
-				<td>รวม</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td>0</td>
-				<td></td>
 			</tr>
 		</tbody>
 	</table>
