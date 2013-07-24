@@ -93,4 +93,19 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<table class="detail-note">
+		<thead>
+			<tr>
+				<th>ประเภท</th>
+				<th>วัน และวันที่หมายเหตุการลา</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
