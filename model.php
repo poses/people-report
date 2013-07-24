@@ -127,6 +127,24 @@
             return $type;
         }
 
+        public function getPosition( $id ) {
+            $data = $this->connect();
+            $data->query('SET NAMES utf8');
+            $sql = "SELECT position_name FROM faceacc_log_sumperday
+                    WHERE officer_id=$id
+                    ORDER BY officer_id DESC
+                    LIMIT 1
+                ";
+
+            $sth = $data->prepare($sql);
+            $sth->execute();
+            $positionName = $sth->fetchAll(PDO::FETCH_ASSOC);
+            $position = $positionName[0]['position_name'];
+
+            return $position;
+
+        }
+
         /**
          * File data in tabel using id to referrent.
          *
@@ -163,11 +181,11 @@
                     AND logDate BETWEEN '$startDate' AND '$endDate'
                 ";
 
-                $sth = $data->prepare($sql);
-                $sth->execute();
-                $dayOff = $sth->fetchAll(PDO::FETCH_ASSOC);
+            $sth = $data->prepare($sql);
+            $sth->execute();
+            $dayOff = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-                return $dayOff;
+            return $dayOff;
 
         }
 	}

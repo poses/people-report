@@ -54,6 +54,7 @@
 	    		$people[] = $vData;
  	    		$people[$kData]['late'] = $this->model->latePerTimes($vData['officer_id'], $startTime, $endTime);
 	    		$people[$kData]['late_minute'] = $this->model->latePerMinute($vData['officer_id'], $startTime, $endTime);
+	    		$people[$kData]['position_name'] = $this->model->getPosition($vData['officer_id']);
 	    		$people[$kData]['late_with_type'] = $this->model->lateWithType($vData['officer_id'], $startTime, $endTime);
 	    		//Find data and count put to the same `access type`.
 	    		foreach ( $people[$kData]['late_with_type'] as $kType => $vType ) {
