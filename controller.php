@@ -18,6 +18,7 @@
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
 	    public function index() {
+	    	include 'templates/header.php';
 	    	//Set default start and end date.
 	    	$startTime = date('Y-m-d', strtotime('-1 day'));
 	    	$endTime = date('Y-m-d', time());
@@ -66,6 +67,7 @@
 	    	}
 
 	        require_once('templates/index.tpl.php');
+			include 'templates/footer.php';
 	    }
 
 	    /**
@@ -74,6 +76,7 @@
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
 	    public function viewDetail($id) {
+	    	include 'templates/header.php';
 	    	$user = $this->model->findById($id);
 
 	    	//Set default start and end date.
@@ -113,6 +116,23 @@
     		}
 
 	    	require_once('templates/show-detail.tpl.php');
+			include 'templates/footer.php';
+	    }
+
+	    public function getDayOff() {
+			header('Content-Type: application/json');
+
+	    	if ( empty($_GET['accessId']) || $_GET['accessId'] == 0 ) {
+	    		return json_encode(false);
+	    	}
+
+	    	$dayOff = $this->model->getDayOffByUser($_GET['userId'], $_GET['accessId'], $_GET['startDate'], $_GET['endDate']);
+
+	    	foreach ( $dayOff as $kOff => $vOff ) {
+	    			$dayOff[$kOff]['logDate'] = date('d F Y', strtotime($vOff['logDate']));
+	    	}
+
+	    	echo json_encode($dayOff);
 	    }
 
 	    /**
@@ -122,7 +142,9 @@
 	     * @since 8 July 2013
 	     */
 	    public function errorPage() {
+	    	include 'templates/header.php';
 	    	require_once('templates/404.tpl.php');
+			include 'templates/footer.php';
 	    }
 	}
 ?>

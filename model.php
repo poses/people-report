@@ -53,7 +53,7 @@
         public function findAccessTypeLimit() {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
-            $accessLimit = $data->query('SELECT * FROM faceacc_access_type WHERE type_limit <> 0');
+            $accessLimit = $data->query('SELECT * FROM faceacc_access_type WHERE type_limit <> 0 OR access_type_id = 1');
 
             $dataLimit = array();
             foreach ( $accessLimit as $kLimit => $vLimit) {
@@ -113,7 +113,6 @@
             $data = $this->connect();
             $sql = "SELECT * FROM faceacc_log_sumperday
                     WHERE officer_id=$officerId
-                    AND time_late<>0
                     AND access_type_id<>3
                     AND logDate BETWEEN '$startDate' AND '$endDate'
                     ";
@@ -152,6 +151,24 @@
             }
 
             return $user;
+        }
+
+        public function getDayOffByUser($id, $accessid, $startDate, $endDate) {
+            $data = $this->connect();
+            $data->query('SET NAMES utf8');
+
+            $sql = "SELECT * FROM faceacc_log_sumperday
+                    WHERE officer_id=$id
+                    AND access_type_id=$accessid
+                    AND logDate BETWEEN '$startDate' AND '$endDate'
+                ";
+
+                $sth = $data->prepare($sql);
+                $sth->execute();
+                $dayOff = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+                return $dayOff;
+
         }
 	}
 ?>

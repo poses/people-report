@@ -66,7 +66,7 @@
 		<tbody>
 			<tr>
 				<td>สิทธิ์การลา</td>
-				<td>30</td>
+				<td><?php echo ($accessTypeLimit[1]['type_limit']) ?: '0'; ?></td>
 				<td><?php echo $accessTypeLimit[2]['type_limit']; ?></td>
 				<td><?php echo $accessTypeLimit[4]['type_limit']; ?></td>
 				<td><?php echo $accessTypeLimit[6]['type_limit']; ?></td>
@@ -75,16 +75,16 @@
 			</tr>
 			<tr>
 				<td>ลาไปแล้ว</td>
-				<td>20</td>
-				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[2]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[4]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo ($lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]) ?: 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[1]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[1]['access_type_id']]) ?: 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[2]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[2]['access_type_id']]) ?: 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[4]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[4]['access_type_id']]) ?: 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[6]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[7]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]) ?: 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[8]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]) ?: 0; ?></td>
 			</tr>
 			<tr class="remain-date">
 				<td>วันลาคงเหลือ</td>
-				<td>10</td>
+				<td><?php echo $accessTypeLimit[1]['type_limit'] - ($lateWithType['off-' . $accessTypeLimit[1]['access_type_id']]) ?: 0; ?></td>
 				<td><?php echo $accessTypeLimit[2]['type_limit'] - ($lateWithType['off-' . $accessTypeLimit[2]['access_type_id']]) ?: 0; ?></td>
 				<td><?php echo $accessTypeLimit[4]['type_limit'] - ($lateWithType['off-' . $accessTypeLimit[4]['access_type_id']]) ?: 0; ?></td>
 				<td><?php echo $accessTypeLimit[6]['type_limit'] - ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
@@ -93,19 +93,43 @@
 			</tr>
 		</tbody>
 	</table>
-
-	<table class="detail-note">
-		<thead>
+	<table class="detail-note" id="list-dayoff">
+	</table>
+</div>
+<script type="text/html" id="js-list-dayoff">
+	<thead>
 			<tr>
 				<th>ประเภท</th>
 				<th>วัน และวันที่หมายเหตุการลา</th>
 			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+	</thead>
+	<tbody >
+	    <%  _.each(response, function(values) { %>
+	    	<tr>
+	    		<td><%= values.access_type_name %></td>
+	    		<td>
+	    			วันที่ลา : <%= values.logDate %>, หมายเหตุ : <%= values.approve_detail%>
+	            </td>
+	        </tr>
+	    <% });%>
+	</tbody>
+</script>
+<script>
+	$(function() {
+		$('table.detail-table tr:nth-child(2) td').on('click', function() {
+			console.log($(this).data());
+
+			$.getJSON('?action=getDayOff&userId=<?php echo $id;?>&startDate=<?php echo $startTime?>&endDate=<?php echo $endTime?>',
+				$(this).data(),
+				function(data) {
+					console.log(data);
+					if ( data.length === 0 ) {
+                        $("#list-dayoff").html('');
+                    } else {
+                        var template = $("#js-list-dayoff").html();
+                        $("#list-dayoff").html( _.template(template, { response : data}) );
+                    }
+			});
+		});
+	});
+</script>
