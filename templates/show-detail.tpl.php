@@ -94,6 +94,7 @@
 		</tbody>
 	</table>
 	<table class="detail-note" id="list-dayoff">
+		<!-- Render underscore template here -->
 	</table>
 </div>
 <script type="text/html" id="js-list-dayoff">

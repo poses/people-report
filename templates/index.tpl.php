@@ -44,13 +44,12 @@
 				<th>ตำแหน่ง</th>
 				<th>สาย</th>
 				<th>สาย</th>
-				<th>ขาด</th>
-				<th>ลากิจ</th>
-				<th>ลาป่วย</th>
-				<th>พักร้อน</th>
-				<th>ลาคลอด</th>
-				<th>พักร้อน</th>
-				<th>ลาบวช</th>
+				<th colspan="3">ขาด</th>
+				<th colspan="3">ลากิจ</th>
+				<th colspan="3">ลาป่วย</th>
+				<th colspan="3">พักร้อน</th>
+				<th colspan="3">ลาคลอด</th>
+				<th colspan="3">ลาบวช</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -89,11 +88,11 @@
 					</td>
 					<td><?php echo $value['site_name']; ?></td>
 					<td><?php echo $value['late']; ?></td>
-					<td><?php echo date('i', strtotime($value['late_minute'])); ?></td>
+					<td><?php echo gmdate("i", $value['late_minute']); ?></td>
 
-					<td>30</td>
-					<td>2</td>
-					<td>28</td>
+					<td><?php echo $accessTypeLimit[1]['type_limit']; ?></td>
+					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[1]['access_type_id']]) ?: 0; ?></td>
+					<td><?php echo $accessTypeLimit[1]['type_limit'] - $value['late_with_type']['off-' . $accessTypeLimit[1]['access_type_id']]; ?></td>
 
 					<td><?php echo $accessTypeLimit[2]['type_limit']; ?></td>
 					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[2]['access_type_id']]) ?: 0; ?></td>
