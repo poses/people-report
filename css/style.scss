@@ -385,26 +385,37 @@ table.summary-table {
         font-size: .9em;
     }
 
+    input {
+        margin-bottom: 5px;
+        padding: 3px;
+        border: 1px solid #ccc;
+        font-size: .9em;
+    }
+
+    input[type=submit] {
+        display: block;
+        padding: 3px 10px;
+        border: 1px solid $color-link;
+        background: $color-link;
+        color: #fff;
+    }
+
     .add-dayoff {
         label {
             margin-left: 124px;
             &[for=businessOff] { margin-left: 0; }
         }
 
-        input {
-            margin-bottom: 5px;
-            position: 3px;
-            border: 1px solid #ccc;
+        input[type=submit] { margin-left: 342px;}
+    }
+
+    form.filter {
+        input[type=text] {
+            width: 200px;
+            padding: 3px 5px;
         }
 
-        input[type=submit] {
-            display: block;
-            padding: 3px 10px;
-            margin-left: 326px;
-            border: 1px solid $color-link;
-            background: $color-link;
-            color: #fff;
-        }
+        input[type=submit] { margin-left: 240px;}
     }
 
 }

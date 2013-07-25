@@ -131,6 +131,7 @@
 			include 'templates/header.php';
 
 			$allPosition = $this->model->getAllPosition();
+			$accessTypeLimit = $this->model->findAccessTypeLimit();
 
 			require_once('templates/add-time.tpl.php');
 			include 'templates/footer.php';

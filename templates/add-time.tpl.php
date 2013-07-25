@@ -17,31 +17,44 @@
 
 		<div class="clearfix"></div>
 		<label for="subPosition">ประจำปี</label>
-		<select name="sub-position" id="subPosition">
-			<option value="1">ฝ่ายนัน้</option>
-		</select>
+		<input type="text" class="datepicker" value="<? echo date('Y');?>">
+
+		<div class="clearfix"></div>
+		<input type="submit" value="submit" name="submit">
 	</form>
 
 	<form action="?action=add" method="POST" class="add-dayoff right">
 		<div class="form-label">ระเบียบบริษัท</div>
 
 		<label for="businessOff">ลากิจ</label>
-		<input type="text" name="businessOff" id="business-off">
+		<input type="text" name="businessOff" id="business-off" value="<?php echo $accessTypeLimit[2]['type_limit'];?>">
 
 		<div class="clearfix"></div>
 		<label for="sickOff">ลาป่วย</label>
-		<input type="text" name="sickOff" id="sickOff">
+		<input type="text" name="sickOff" id="sickOff" value="<?php echo $accessTypeLimit[4]['type_limit'];?>">
 
 		<div class="clearfix"></div>
 		<label for="pregnantOff">ลาคลอด</label>
-		<input type="text" name="pregnantOff" id="pregnantOff">
+		<input type="text" name="pregnantOff" id="pregnantOff" value="<?php echo $accessTypeLimit[7]['type_limit'];?>">
 
 		<div class="clearfix"></div>
 		<label for="ordinateOff">ลาบวช</label>
-		<input type="text" name="ordinateOff" id="ordinateOff">
+		<input type="text" name="ordinateOff" id="ordinateOff" value="<?php echo $accessTypeLimit[8]['type_limit'];?>">
 
 		<div class="clearfix"></div>
-		<input type="submit" value="submit" name="submit">
+		<input type="submit" value="แก้ไข" name="submit">
 	</form>
 	<div class="clearfix"></div>
+
+	<hr>
+
+
 </div>
+<script>
+	$(function() {
+		$('.datepicker').Zebra_DatePicker({
+			view: 'years',
+			format: 'Y'
+		});
+	});
+</script>
