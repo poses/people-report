@@ -22,15 +22,17 @@
 	    	//Set default start and end date.
 	    	$startTime = date('Y-m-d', strtotime('-1 day'));
 	    	$endTime = date('Y-m-d', time());
+	    	$employeeCat = '';
 
 	    	//If user select date.
-	    	if ( !empty($_GET['start_date']) && !empty($_GET['end_date']) ) {
+	    	if ( !empty($_GET['start_date']) && !empty($_GET['end_date']) && !empty($_GET['employee-cat']) ) {
 	    		$startTime = $_GET['start_date'];
 	    		$endTime = $_GET['end_date'];
+	    		$employeeCat = $_GET['employee-cat'];
 	    	}
 
 	    	//Count data for `$pages->limit`
-	    	$countAll = $this->model->findOfficer(true);
+	    	$countAll = $this->model->findOfficer(true, $employeeCat);
 
 	    	//Create paginate object.
 	    	require_once('paginate.php');
@@ -40,7 +42,10 @@
 			$pages->paginate();
 
 	    	//Find data width between date.
-	    	$allData = $this->model->findOfficer(false, $pages->limit);
+	    	$allData = $this->model->findOfficer(false, $employeeCat, $pages->limit);
+
+	    	//Get all position name form `faceacc_log_sumperday::position_name`.
+	    	$allPosition = $this->model->getAllPosition();
 
 	    	//Find access type
     		$accessTypeLimit = $this->model->findAccessTypeLimit();
@@ -119,6 +124,15 @@
     		$positionName = $this->model->getPosition($id);
 
 	    	require_once('templates/show-detail.tpl.php');
+			include 'templates/footer.php';
+	    }
+
+	    public function add() {
+			include 'templates/header.php';
+
+			$allPosition = $this->model->getAllPosition();
+
+			require_once('templates/add-time.tpl.php');
 			include 'templates/footer.php';
 	    }
 

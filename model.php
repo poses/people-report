@@ -29,14 +29,16 @@
          * @return Array group of data.
          * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function findOfficer( $count = false, $limit = '' ) {
+        public function findOfficer( $count = false, $position, $limit = '' ) {
             //Ceck `$count` for select **All** or select **COUNT**.
             //Use `SELECT COUNT(*)` for paginate the result.
             $count = ($count) ? 'COUNT(*)' : '*';
+            $position = empty($position) ? '' : ' AND position_name=' . $position;
 
             $data = $this->connect();
             $data->query('SET NAMES utf8');
-            $sql = "SELECT $count FROM faceacc_officer INNER JOIN tbl_prename ON
+            $sql = "SELECT $count FROM faceacc_officer
+                    INNER JOIN tbl_prename ON
                     faceacc_officer.prename=tbl_prename.id
                     ORDER BY faceacc_officer.officer_id ASC
                     $limit";
@@ -158,6 +160,17 @@
             $position = $positionName[0]['position_name'];
 
             return $position;
+        }
+
+        public function getAllPosition() {
+            $data = $this->connect();
+            $data->query('SET NAMES utf8');
+            $sql = "SELECT distinct(position_name) FROM faceacc_log_sumperday";
+            $sth = $data->prepare($sql);
+            $sth->execute();
+            $allPositionName = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            return $allPositionName;
         }
 
         /**

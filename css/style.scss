@@ -77,7 +77,13 @@ a {
 }
 
 h1 { font-size: 1.6em; }
-h2 { font-size: 1.4em; }
+
+h2 {
+    width: 45%;
+    font: $norm 2em $thaisans;
+    color: $color-link;
+}
+
 h3 { font-size: 1.2em; }
 
 // ==============================
@@ -159,11 +165,6 @@ h3 { font-size: 1.2em; }
 .team-view {
     padding-top: 10px;
 
-    h2 {
-        width: 45%;
-        font: $norm 2em $thaisans;
-        color: $color-link;
-    }
 
     form.team-select {
         width: 51%;
@@ -362,6 +363,50 @@ table.summary-table {
     table.detail-note {
         th, td { &:first-child { text-align: $l; } }
     }
+}
+
+.add-dayoff {
+    label,
+    .form-label {
+        width: 80px;
+        display: $block;
+        margin: 0 10px;
+        color: $color-link;
+        font: $bd 1em Arial, Sans-serif;
+    }
+
+    .form-label { width: 100px; }
+
+    select {
+        margin-bottom: 5px;
+        width: 200px;
+        border: 1px solid #ccc;
+        padding: 3px 5px;
+        font-size: .9em;
+    }
+
+    .add-dayoff {
+        label {
+            margin-left: 124px;
+            &[for=businessOff] { margin-left: 0; }
+        }
+
+        input {
+            margin-bottom: 5px;
+            position: 3px;
+            border: 1px solid #ccc;
+        }
+
+        input[type=submit] {
+            display: block;
+            padding: 3px 10px;
+            margin-left: 326px;
+            border: 1px solid $color-link;
+            background: $color-link;
+            color: #fff;
+        }
+    }
+
 }
 
 .form-label { display: $block; }
