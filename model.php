@@ -216,5 +216,33 @@
             return $dayOff;
 
         }
+
+        public function findLimitPerYear( $id, $year ) {
+            $data = $this->connect();
+            $sql = "SELECT * FROM faceacc_officer_access_type_limit
+                    WHERE officer_id=$id
+                    AND access_type_year='$year'
+                    ";
+                    // echo $sql; exit();
+            $sth = $data->prepare($sql);
+            $sth->execute();
+            $limitPerYear = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($limitPerYear as $kLimit => $vLimit) {
+                $limitPerYear['type-' . $vLimit['access_type_id']] = $vLimit;
+                unset($limitPerYear[$kLimit]);
+            }
+
+            return $limitPerYear;
+        }
+
+        public function addAllAccess( $id, $accessId, $limit, $year ) {
+            $data = $this->connect();
+            $sql = "INSERT INTO faceacc_officer_access_type_limit (officer_id, access_type_id, access_type_year, access_type_limit, access_type_updatetime)
+                    VALUES ($id, $accessId, '$year', $limit, NOW())
+                ";
+            $sth = $data->prepare($sql);
+            $sth->execute();
+        }
 	}
 ?>

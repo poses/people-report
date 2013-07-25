@@ -130,8 +130,53 @@
 	    public function add() {
 			include 'templates/header.php';
 
+			$thisYear = date('Y', time());
+			if ( isset($_GET['year']) && !empty($_GET['year']) ) {
+				$thisYear = $_GET['year'];
+			}
+
 			$allPosition = $this->model->getAllPosition();
 			$accessTypeLimit = $this->model->findAccessTypeLimit();
+
+			//Count data for `$pages->limit`
+	    	$countAll = $this->model->findOfficer(true, $employeeCat);
+
+	    	//Create paginate object.
+	    	require_once('paginate.php');
+            $pages = new Paginator;
+			$pages->mid_range = 5;
+			$pages->items_total = $countAll->fetchColumn();
+			$pages->paginate();
+
+			//Find data width between date.
+	    	$allData = $this->model->findOfficer(false, $employeeCat, $pages->limit);
+			$people = array();
+	    	foreach ($allData as $kData => $vData) {
+	    		$people[] = $vData;
+	    		$people[$kData]['position_name'] = $this->model->getPosition($vData['officer_id']);
+	    		$people[$kData]['access_per_year'] = $this->model->findLimitPerYear($vData['officer_id'], $thisYear);
+
+	    	}
+
+	    	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+
+	    		foreach ( $people as $kPeople => $vPeople ) {
+	    			foreach ($_POST as $kPost => $vPost) {
+		    			if ( $kPost == 'submit' ) {
+		    				unset($_POST[$kPost]);
+		    				break;
+		    			}
+
+		    			$addStatus = $this->model->addAllAccess(
+		    					$vPeople['officer_id'],
+		    					$kPost,
+		    					$vPost,
+		    					$thisYear
+		    				);
+	    			}
+	    		}
+
+	    	}
 
 			require_once('templates/add-time.tpl.php');
 			include 'templates/footer.php';
