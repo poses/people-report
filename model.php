@@ -238,10 +238,30 @@
 
         public function addAllAccess( $id, $accessId, $limit, $year ) {
             $data = $this->connect();
-            $sql = "INSERT INTO faceacc_officer_access_type_limit (officer_id, access_type_id, access_type_year, access_type_limit, access_type_updatetime)
-                    VALUES ($id, $accessId, '$year', $limit, NOW())
-                ";
+
+            $sql = "SELECT * FROM faceacc_officer_access_type_limit
+                    WHERE officer_id=$id
+                    AND access_type_id=$accessId
+                    AND access_type_year='$year'
+                    ";
             $sth = $data->prepare($sql);
+            $sth->execute();
+            $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            if ( !empty($result) ) {
+                $sql2 = "UPDATE faceacc_officer_access_type_limit
+                         SET access_type_limit=$limit
+                         WHERE officer_id=$id
+                         AND access_type_id=$accessId
+                         AND access_type_year='$year'
+                        ";
+            } else {
+                $sql2 = "INSERT INTO faceacc_officer_access_type_limit (officer_id, access_type_id, access_type_year, access_type_limit, access_type_updatetime)
+                        VALUES ($id, $accessId, '$year', $limit, NOW())
+                    ";
+            }
+
+            $sth = $data->prepare($sql2);
             $sth->execute();
         }
 	}
