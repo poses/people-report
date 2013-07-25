@@ -63,8 +63,8 @@
 					<th>ลากิจ</th>
 					<th>ลาป่วย</th>
 					<th>ลาพักร้อน</th>
-					<th>ลาบวช</th>
 					<th>ลาคลอด</th>
+					<th>ลาบวช</th>
 					<th>หมายเหตุ</th>
 				</tr>
 			</thead>
@@ -72,7 +72,7 @@
 				<?php foreach ( $people as $value ) : ?>
 					<tr>
 						<td class="aligncenter"><?php echo $value['officer_id'] ?></td>
-						<td><?php echo $value['firstname'] . ' ' . $value['surname'] ?></td>
+						<td><?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname'] ?></td>
 						<td><?php echo $value['position_name']; ?></td>
 						<td>nothing</td>
 						<!-- <td><input type="text" name="addBusiness"></td>
@@ -84,8 +84,8 @@
 						<td><?php echo $value['access_per_year']['type-2']['access_type_limit']; ?></td>
 						<td><?php echo $value['access_per_year']['type-4']['access_type_limit']; ?></td>
 						<td><?php echo $value['access_per_year']['type-6']['access_type_limit']; ?></td>
-						<td><?php echo $value['access_per_year']['type-7']['access_type_limit']; ?></td>
-						<td><?php echo $value['access_per_year']['type-8']['access_type_limit']; ?></td>
+						<td><?php echo ($value['access_per_year']['type-7']['access_type_limit'] == '0') ? '-': $value['access_per_year']['type-7']['access_type_limit']; ?></td>
+						<td><?php echo ($value['access_per_year']['type-8']['access_type_limit'] == '0') ? '-': $value['access_per_year']['type-8']['access_type_limit'];?></td>
 						<td>ตกลง</td>
 					</tr>
 				<?php endforeach; ?>

@@ -162,20 +162,20 @@
 
 	    		foreach ( $people as $kPeople => $vPeople ) {
 	    			foreach ($_POST as $kPost => $vPost) {
+
 		    			if ( $kPost == 'submit' ) {
 		    				unset($_POST[$kPost]);
-		    				break;
+		    				continue;
 		    			}
 
-		    			$addStatus = $this->model->addAllAccess(
-		    					$vPeople['officer_id'],
-		    					$kPost,
-		    					$vPost,
-		    					$thisYear
-		    				);
+		    			if (( $vPeople['gender'] == '1' &&  $kPost == '7' )
+		    			      || ( $vPeople['gender'] == '2' &&  $kPost == '8' ))  {
+		    				$vPost = '0';
+		    			}
+
+		    			$addStatus = $this->model->addAllAccess( $vPeople['officer_id'], $kPost, $vPost, $thisYear );
 	    			}
 	    		}
-
 	    	}
 
 			require_once('templates/add-time.tpl.php');
