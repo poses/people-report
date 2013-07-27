@@ -37,10 +37,10 @@
 		<div class="form-label">ข้อมูลช่วงเวลา</div>
 
 		<label for="userDetailDateFrom">วันที่ </label>
-		<input type="date" id="userDetailDateFrom" name="startDate" value="<?php echo $startTime; ?>">
+		<input type="text" id="userDetailDateFrom" class="theDatepicker" name="startDate" value="<?php echo date('d F Y', strtotime($startTime)); ?>">
 
 		<label for="userDetailDateTo">ถึงวันที่ </label>
-		<input type="date" id="userDetailDateTo" name="endDate" value="<?php echo $endTime; ?>">
+		<input type="text" id="userDetailDateTo" name="endDate" class="theDatepicker" value="<?php echo date('d F Y', strtotime($endTime)); ?>">
 
 		<input type="hidden" name="id" value="<?php echo $user[0]['officer_id']; ?>">
 		<input type="submit" name="Submit" value="Go">
@@ -116,6 +116,16 @@
 
 <script>
 	$(function() {
+		$('#userDetailDateFrom').Zebra_DatePicker({
+			format: 'd F Y',
+			pair: $('#userDetailDateTo')
+		});
+
+		$('#userDetailDateTo').Zebra_DatePicker({
+			format: 'd F Y',
+			direction: 1
+		});
+
 		$('table.detail-table tr:nth-child(2) td').on('click', function() {
 			//User `underscore` to create template for day off detail.
 			$.getJSON('?action=getDayOff&userId=<?php echo $id;?>&startDate=<?php echo $startTime?>&endDate=<?php echo $endTime?>',

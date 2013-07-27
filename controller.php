@@ -26,11 +26,10 @@
 
 	    	//If user select date.
 	    	if ( !empty($_GET['start_date']) && !empty($_GET['end_date']) && !empty($_GET['employee-cat']) ) {
-	    		$startTime = $_GET['start_date'];
-	    		$endTime = $_GET['end_date'];
+	    		$startTime = date('Y-m-d', strtotime($_GET['start_date']));
+	    		$endTime = date('Y-m-d', strtotime($_GET['end_date']));
 	    		$employeeCat = $_GET['employee-cat'];
 	    	}
-
 	    	//Count data for `$pages->limit`
 	    	$countAll = $this->model->findOfficer(true, $employeeCat);
 
@@ -97,8 +96,8 @@
 	    	$endTime = date('Y-m-d', time());
 	    	//If user select date.
 	    	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
-	    		$startTime = $_POST['startDate'];
-	    		$endTime = $_POST['endDate'];
+	    		$startTime = date('Y-m-d', strtotime($_POST['startDate']));
+	    		$endTime = date('Y-m-d', strtotime($_POST['endDate']));
 	    	}
 	    	//Find access type and calculate all of access type limit.
     		$accessTypeLimit = $this->model->findAccessTypeLimit();

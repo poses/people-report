@@ -13,14 +13,14 @@
 
 	<form action="?action=index" method="GET" class="team-select right">
 		<label for="start-team-date">ช่วงเวลา </label>
-		<input type="date" name="start_date" id="start_date" value="<?php echo $startTime; ?>">
+		<input type="text" name="start_date" id="start_date" class="theDatepicker" value="<?php echo date('d F Y', strtotime($startTime)); ?>">
 
 		<label for="end_date" class="date-stop">ถึงวันที่ </label>
-		<input type="date" name="end_date" id="end_date" class="date-stop" value="<?php echo $endTime; ?>">
+		<input type="text" name="end_date" id="end_date" class="date-stop theDatepicker" value="<?php echo date('d F Y', strtotime($endTime)); ?>">
 
 		<div class="clearfix"></div>
 		<label for="employee-type">ประเภทพนักงาน</label>
-		<input type="text" name="employee-type" id="employee-type" disabled>
+		<input type="text" name="employee-type" id="employee-type" value="พนักงานประจำ" disabled>
 
 		<div class="clearfix"></div>
 		<label for="employee-type">แผนก</label>
@@ -33,7 +33,7 @@
 
 		<div class="clearfix"></div>
 		<label for="employee-type">สถานะ</label>
-		<input type="text" name="employee-cat" id="employee-cat" disabled>
+		<input type="text" name="employee-cat" id="employee-cat" value="-" disabled>
 
 		<input type="submit" name="submit" value="ค้นหา">
 	</form>
@@ -123,3 +123,16 @@
 
 	<?php echo $pages->display_pages();   ?>
 </div>
+<script>
+	$(function() {
+		$('#start_date').Zebra_DatePicker({
+			format: 'd F Y',
+			pair: $('#end_date')
+		});
+
+		$('#end_date').Zebra_DatePicker({
+			format: 'd F Y',
+			direction: 1
+		});
+	});
+</script>
