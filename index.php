@@ -1,10 +1,8 @@
 <?php
 	/**
 	 * Main page and landing of project.
-	 *
 	 * @copyright 2013 use for personal only.
 	 * @author Ting <ichaiwut.s@gmail.com>
-	 * @since 8 July 2013
 	 */
 
 	require('boostraps.php');
@@ -23,7 +21,7 @@
 		$controller->index();
 	} else {
 		//and use `$action` for function name.
-		$controller->$action(($params) ? $params : '');
+		$controller->$action(($params) ?: '');
 	}
 
 ?>

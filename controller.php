@@ -9,7 +9,7 @@
 	class Controller {
 	    private $model;
 
-	    public function Controller($model) {
+	    public function Controller( $model ) {
 	        $this->model = $model;
 	    }
 
@@ -43,13 +43,10 @@
 
 	    	//Find data width between date.
 	    	$allData = $this->model->findOfficer(false, $employeeCat, $pages->limit);
-
 	    	//Get all position name form `faceacc_log_sumperday::position_name`.
 	    	$allPosition = $this->model->getAllPosition();
-
 	    	//Find access type
     		$accessTypeLimit = $this->model->findAccessTypeLimit();
-
     		//This variable will keep these data:
     		//     - Late per time : see `Model::larePerTimes()`.
     		//     - Late per minute : see `Model::latePerMinute()`.
@@ -91,23 +88,20 @@
 	     * @param  integer $id user's id.
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
-	    public function viewDetail($id) {
+	    public function viewDetail( $id ) {
 	    	include 'templates/header.php';
+	    	//Find user data.
 	    	$user = $this->model->findById($id);
-
 	    	//Set default start and end date.
 	    	$startTime = date('Y-m-d', strtotime('-1 day'));
 	    	$endTime = date('Y-m-d', time());
-
 	    	//If user select date.
 	    	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	    		$startTime = $_POST['startDate'];
 	    		$endTime = $_POST['endDate'];
 	    	}
-
 	    	//Find access type and calculate all of access type limit.
     		$accessTypeLimit = $this->model->findAccessTypeLimit();
-
     		//Check gender and remove key from array.
 			if ( $user[0]['gender'] == 1 ) {
 				unset($accessTypeLimit[7]);
@@ -134,7 +128,7 @@
 					}
     			}
     		}
-
+    		//Get position name.
     		$positionName = $this->model->getPosition($id);
 
 	    	require_once('templates/show-detail.tpl.php');
@@ -143,7 +137,7 @@
 
 	    /**
 	     * Add limit time per year per each people and all people.
-	     *@author Ting <ichaiwut.s@gmail.com>
+	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
 	    public function add() {
 			include 'templates/header.php';
@@ -155,7 +149,6 @@
 
 			$allPosition = $this->model->getAllPosition();
 			$accessTypeLimit = $this->model->findAccessTypeLimit();
-
 			//Count data for `$pages->limit`
 	    	$countAll = $this->model->findOfficer(true, $employeeCat);
 
@@ -189,12 +182,11 @@
 		    			if (( $vPeople['gender'] == '1' &&  $kPost == '7' ) || ( $vPeople['gender'] == '2' &&  $kPost == '8' ))  {
 		    				$vPost = '0';
 		    			}
-
 		    			// See `model::addAllAccess`.
 		    			$addStatus = $this->model->addAllAccess( $vPeople['officer_id'], $kPost, $vPost, $thisYear );
 	    			}
 	    		}
-
+	    		//Redirect to success page for reload the page.
 	    		$this->successPage();
 	    	}
 
@@ -242,18 +234,6 @@
 			}
 
 			return json_encode($result);
-	    }
-
-	    /**
-	     * Throw all of error page to this function
-	     *
-	     * @author Ting <ichaiwut.s@gmail.com>
-	     * @since 8 July 2013
-	     */
-	    public function errorPage() {
-	    	include 'templates/header.php';
-	    	require_once('templates/404.tpl.php');
-			include 'templates/footer.php';
 	    }
 
 	    /**

@@ -15,8 +15,8 @@
     		global $db;
     		//Connect database use `PDO`;
     		try {
-	    		return new PDO('mysql:host=localhost;dbname=people', 'root', 'root');
-    		} catch( PDOException $e ) {
+	    		return new PDO("mysql:host=" . $db['host'] . ";dbname=" . $db['database_name'], $db['username'], $db['password']);
+    		} catch ( PDOException $e ) {
 				echo 'ERROR! : ' . $e->getMessage();
     		}
     	}
@@ -165,8 +165,7 @@
         public function getAllPosition() {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
-            $sql = "SELECT distinct(position_name) FROM faceacc_log_sumperday";
-            $sth = $data->prepare($sql);
+            $sth = $data->prepare('SELECT distinct(position_name) FROM faceacc_log_sumperday');
             $sth->execute();
             $allPositionName = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -188,13 +187,9 @@
                     faceacc_officer.prename=tbl_prename.id
                     WHERE faceacc_officer.officer_id='$id'";
 
-            $userData = $data->query($sql);
-
-            //Arrange value in to array.
-            $user = array();
-            foreach ($userData as $vUser) {
-                $user[] = $vUser;
-            }
+            $sth = $data->prepare($sql);
+            $sth->execute();
+            $user = $sth->fetchAll(PDO::FETCH_ASSOC);
 
             return $user;
         }

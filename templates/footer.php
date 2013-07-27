@@ -1,10 +1,7 @@
 <?php
 	/**
 	 * Footer page : the footer template.
-	 *
 	 * @author Ting <ichaiwut.@gmail.com>
-	 * @since 8 July 2013
-	 *
 	 */
 ?>
 			</section>

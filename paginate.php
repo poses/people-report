@@ -23,7 +23,6 @@ class Paginator{
 
 	/**
      * Construct function
-     *
      * @since 18 July 2013
      */
 	public function Paginator() {

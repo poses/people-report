@@ -1,10 +1,7 @@
 <?php
 	/**
 	 * Header page : the header template.
-	 *
 	 * @author Ting <ichaiwut.@gmail.com>
-	 * @since 8 July 2013
-	 *
 	 */
 ?>
 <!DOCTYPE html>
