@@ -199,6 +199,15 @@
             return $user;
         }
 
+        /**
+         * Get day off for each user and each limit type.
+         * @param  integer $id user id.
+         * @param  integer $accessid limit type id.
+         * @param  string $startDate start date.
+         * @param  string $endDate end date.
+         * @return array group of data.
+         * @author Ting <ichaiwut.s@gmail.com>
+         */
         public function getDayOffByUser($id, $accessid, $startDate, $endDate) {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
@@ -214,16 +223,22 @@
             $dayOff = $sth->fetchAll(PDO::FETCH_ASSOC);
 
             return $dayOff;
-
         }
 
+        /**
+         * Get limit data in the year.
+         * @param  integer $id  user id.
+         * @param  string $year year
+         * @return group of limit type data.
+         * @author Ting <iChaiwut.s@gmail.com>
+         */
         public function findLimitPerYear( $id, $year ) {
             $data = $this->connect();
             $sql = "SELECT * FROM faceacc_officer_access_type_limit
                     WHERE officer_id=$id
                     AND access_type_year='$year'
                     ";
-                    // echo $sql; exit();
+
             $sth = $data->prepare($sql);
             $sth->execute();
             $limitPerYear = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -236,9 +251,17 @@
             return $limitPerYear;
         }
 
+        /**
+         * Add limit value.
+         * @param intrger $id user's id.
+         * @param integer $accessId access type id.
+         * @param string $limit limit value.
+         * @param string $year year of limit.
+         * @author Ting <ichaiwut.s@gmail.com>
+         */
         public function addAllAccess( $id, $accessId, $limit, $year ) {
             $data = $this->connect();
-
+            //Chanch existing of data.
             $sql = "SELECT * FROM faceacc_officer_access_type_limit
                     WHERE officer_id=$id
                     AND access_type_id=$accessId
@@ -247,7 +270,7 @@
             $sth = $data->prepare($sql);
             $sth->execute();
             $result = $sth->fetchAll(PDO::FETCH_ASSOC);
-
+            //If data already exits use `UPDATE` insead of `INSERT`
             if ( !empty($result) ) {
                 $sql2 = "UPDATE faceacc_officer_access_type_limit
                          SET access_type_limit=$limit
@@ -257,8 +280,8 @@
                         ";
             } else {
                 $sql2 = "INSERT INTO faceacc_officer_access_type_limit (officer_id, access_type_id, access_type_year, access_type_limit, access_type_updatetime)
-                        VALUES ($id, $accessId, '$year', $limit, NOW())
-                    ";
+                         VALUES ($id, $accessId, '$year', $limit, NOW())
+                        ";
             }
 
             $sth = $data->prepare($sql2);
