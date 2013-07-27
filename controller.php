@@ -70,6 +70,16 @@
 						}
 	    			}
 	    		}
+
+	    		//Get late type limit per each person in the year.
+				foreach ( $accessTypeLimit as $kAccess => $vAccess ) {
+					//get limit type per year and user.
+			    	$people[$kData]['limit_' . $kAccess] = $this->model->getLimitOfUser( $vData['officer_id'], $vAccess['access_type_id'], date('Y', strtotime($startTime)), date('Y', strtotime($endTime)));
+					//Calculate all of limit type if select multiple year.
+					foreach ( $people[$kData]['limit_' . $kAccess] as $kSubAccess => $vSubValue ) {
+						$people[$kData]['limit_' . $kAccess]['all_limit_' . $kAccess] += $vSubValue['access_type_limit'];
+					}
+				}
 	    	}
 
 	        require_once('templates/index.tpl.php');
