@@ -1,15 +1,12 @@
 // ====================================================
-// Main css file for Wedding-cm.com
-// @create          27 March 2013
-// @author          iChaiwut (ichaiwut.s@gmail.com)
+// Main css file will compile to `style.css`.
+// SASS see more : http://www.sass-lang.com
+// @author Ting (ichaiwut.s@gmail.com)
 // ====================================================
 
 $au: auto;
-$zero: 0;
-
 $block: inline-block;
 $no: none;
-
 $t: top;
 $m: middle;
 $b: bottom;
@@ -20,6 +17,7 @@ $bd: bold;
 $norm: normal;
 $color-link: #294F5F;
 
+//Import `Thai sans` font.
 @font-face {
     font-family: 'thai_sans_literegular';
     src: url('thaisanslite_r1-webfont.eot');
@@ -28,9 +26,7 @@ $color-link: #294F5F;
          url('thaisanslite_r1-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-
 }
-
 $thaisans: thai_sans_literegular;
 
 // Control all box inreal size when you use padding.
@@ -39,10 +35,9 @@ $thaisans: thai_sans_literegular;
          box-sizing: border-box;
 }
 
- //=========================================
- // Mixin
- // ========================================
-
+ // Gradient for block selector.
+ // `$startColor` is color in top.
+ // `$stopColor` is color in bottom.
  @mixin gradientBg($startColor, $endColor) {
     background-image: -ms-linear-gradient(top, $startColor 0%, $endColor 100%);/* IE10 Consumer Preview */
     background-image: -moz-linear-gradient(top, $startColor 0%, $endColor 100%); /* Mozilla Firefox */
@@ -52,9 +47,8 @@ $thaisans: thai_sans_literegular;
     background-image: linear-gradient(to bottom, $startColor 0%, $endColor 100%);/* W3C Markup, IE10 Release Preview */
  }
 
-//Import important file
+//Import `_normalize.scss` file.
 @import "normalize";
-
 
 body {
     background: #c6c6c6;
@@ -63,8 +57,6 @@ body {
     color: #666;
     line-height: 1.5;
 }
-
-// Default style for text
 a {
     color: #444;
     font-weight: $bd;
@@ -77,48 +69,23 @@ a {
 }
 
 h1 { font-size: 1.6em; }
-
+h3 { font-size: 1.2em; }
 h2 {
     width: 45%;
     font: $norm 2em $thaisans;
     color: $color-link;
 }
 
-h3 { font-size: 1.2em; }
-
-// ==============================
-// Often use
-// ==============================
 //adjust text.
 .aligncenter { text-align: $c; }
-.alignright { text-align: $r; }
- .alignleft { text-align: $l; }
+ .alignright { text-align: $r; }
+  .alignleft { text-align: $l; }
 
 // Float block.
 .right { float: $r; }
  .left { float: $l; }
 
- .shadow {
-    -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    0px 0px 5px rgba(50, 50, 50, 0.75);
-    box-shadow:         0px 0px 5px rgba(50, 50, 50, 0.75);
- }
-
-
-// =========================================
-// Button
-// =========================================
-.btn-enroll-course {
-    border: 1px solid #236F7F;
-    border-radius: 5px;
-    color: #fff;
-    @include gradientBg($startColor: #309AA7, $endColor: #236F7F);
-    &:hover { background: #309AA7; }
-}
-
-// ========================================
 // Layout
-// ========================================
 .container {
     width: 960px;
     margin: 30px $au;
@@ -150,9 +117,7 @@ h3 { font-size: 1.2em; }
             text-align: $l;
         }
 
-        &:hover {
-            background: #f5f5f5;
-        }
+        &:hover { background: #f5f5f5; }
     }
 }
 
@@ -164,7 +129,6 @@ h3 { font-size: 1.2em; }
 //Team view
 .team-view {
     padding-top: 10px;
-
 
     form.team-select {
         width: 51%;
@@ -223,17 +187,13 @@ hr {
     background: $color-link;
     border: $no;
 }
-
-tr:nth-child(even) {
-    background-color: #efefef;
-}
+//Saperate color for all table row.
+tr:nth-child(even) { background-color: #efefef; }
 
 table.summary-table {
     width: 100%;
 
-    tr:nth-child(even) {
-        background-color: #efefef;
-    }
+    tr:nth-child(even) { background-color: #efefef; }
 
     td,
     th {
@@ -267,48 +227,50 @@ table.summary-table {
             background: #3C6576;
             color: #fff;
         }
+
         &.remain {
             background: #002E40;
             color: #fff;
         }
-
     }
 }
 
+//Main style for all table.
 table {
-        margin-top: 30px;
-        width: 100%;
+    margin-top: 30px;
+    width: 100%;
 
-        th {
-            font: $bd 1em Arial, Sans-serif;
-            color: $color-link;
-            @include gradientBg($startColor: #fff, $endColor: #DDDACB);
-        }//th
-
-        th,
-        td {
-            padding: 8px;
-            border: 1px solid #ccc;
-        }
-
-        td {
-            &:first-child { width: 300px; }
-            font-size: .9em;
-        }
+    th {
+        font: $bd 1em Arial, Sans-serif;
+        color: $color-link;
+        @include gradientBg($startColor: #fff, $endColor: #DDDACB);
     }
 
+    th,
+    td {
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    td {
+        font-size: .9em;
+        &:first-child { width: 300px; }
+    }
+}
+
+//User datail page.
 .user-detail {
     .user-desc {
         width: 50%;
         overflow: hidden;
 
+        .mini-desc { width: 310px; }
+
         img {
             margin-right: 10px;
-            max-width: 140px;
-            max-height: 140px;
+            width: 140px;
+            height: 140px;
         }
-
-        .mini-desc { width: 310px; }
 
         p {
             margin-top: 0;
@@ -346,10 +308,11 @@ table {
     }
 
     table.detail-table {
+
         td:nth-child(n+2) {
             width: 80px;
             text-align: $c;
-        }//td
+        }
 
         tr:nth-child(2) td:nth-child(n+2) {
             cursor: pointer;
@@ -357,14 +320,13 @@ table {
             font-weight: $bd;
 
             &:hover { background: #efefef; }
-        } //tr
-    }//table
-
-    table.detail-note {
-        th, td { &:first-child { text-align: $l; } }
+        }
     }
+
+    table.detail-note { th, td { &:first-child { text-align: $l; } } }
 }
 
+//Form page.
 .add-dayoff {
     label,
     .form-label {
@@ -406,7 +368,7 @@ table {
             &[for=businessOff] { margin-left: 0; }
         }
 
-        input[type=submit] { margin-left: 342px;}
+        input[type=submit] { margin-left: 342px; }
     }
 
     form.filter {
@@ -415,14 +377,13 @@ table {
             padding: 3px 5px;
         }
 
-        input[type=submit] { margin-left: 240px;}
+        input[type=submit] { margin-left: 240px; }
     }
 
     table.list-to-add {
         th,
         td {
             font-size: .8em;
-
             &:first-child { width: 53px; }
             &:nth-child(2),
             &:nth-child(3),
@@ -447,7 +408,6 @@ table {
             margin: 0;
             text-align: $c;
             border: $no;
-
             &:disabled { background: $no; }
         }
 
@@ -464,7 +424,6 @@ table {
             text-align: $c;
         }
     }
-
 }
 
 .form-label { display: $block; }
