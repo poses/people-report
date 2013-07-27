@@ -127,9 +127,13 @@
 			include 'templates/footer.php';
 	    }
 
+	    /**
+	     * Add limit time per year per each people and all people.
+	     *@author Ting <ichaiwut.s@gmail.com>
+	     */
 	    public function add() {
 			include 'templates/header.php';
-
+			//Get year from query string.
 			$thisYear = date('Y', time());
 			if ( isset($_GET['year']) && !empty($_GET['year']) ) {
 				$thisYear = $_GET['year'];
@@ -153,29 +157,30 @@
 			$people = array();
 	    	foreach ($allData as $kData => $vData) {
 	    		$people[] = $vData;
+	    		//Get position name and get access pr year.
 	    		$people[$kData]['position_name'] = $this->model->getPosition($vData['officer_id']);
 	    		$people[$kData]['access_per_year'] = $this->model->findLimitPerYear($vData['officer_id'], $thisYear);
 
 	    	}
-
+	    	// Add limit of year for all user in page.
 	    	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
-
 	    		foreach ( $people as $kPeople => $vPeople ) {
 	    			foreach ($_POST as $kPost => $vPost) {
-
+	    				//Remove `submit` value from array.
 		    			if ( $kPost == 'submit' ) {
 		    				unset($_POST[$kPost]);
 		    				continue;
 		    			}
-
-		    			if (( $vPeople['gender'] == '1' &&  $kPost == '7' )
-		    			      || ( $vPeople['gender'] == '2' &&  $kPost == '8' ))  {
+		    			//Check `gender` of people.
+		    			if (( $vPeople['gender'] == '1' &&  $kPost == '7' ) || ( $vPeople['gender'] == '2' &&  $kPost == '8' ))  {
 		    				$vPost = '0';
 		    			}
-
+		    			// See `model::addAllAccess`.
 		    			$addStatus = $this->model->addAllAccess( $vPeople['officer_id'], $kPost, $vPost, $thisYear );
 	    			}
 	    		}
+
+	    		$this->successPage();
 	    	}
 
 			require_once('templates/add-time.tpl.php');
@@ -206,6 +211,25 @@
 	    }
 
 	    /**
+	     * Update limit of day-off for each people.
+	     * @return json return resutl of process.
+	     * @author Ting <ichaiwut.s@gmail.com>
+	     */
+	    public function updateOffPeople() {
+	    	header('Content-Type: application/json');
+	    	//Extract data for `POST` and `GET`
+	    	//Then add limit value for each type
+	    	//see `model::addAllAccess()`.
+			$result = array();
+			foreach ( $_POST as $kAccess => $vAccess ) {
+				if ( $kAccess == 'id' ) continue; //Key `id` we don't want to use.
+				$result[$kAccess] = $this->model->addAllAccess( $_POST['id'], $kAccess, $vAccess, $_GET['year'] );
+			}
+
+			return json_encode($result);
+	    }
+
+	    /**
 	     * Throw all of error page to this function
 	     *
 	     * @author Ting <ichaiwut.s@gmail.com>
@@ -215,6 +239,16 @@
 	    	include 'templates/header.php';
 	    	require_once('templates/404.tpl.php');
 			include 'templates/footer.php';
+	    }
+
+	    /**
+	     * Redierct page.
+	     * Use this if send `post` in same page and reload page
+	     * are requried.
+	     * @author Ting <ichaiwut.s@gmail.com>
+	     */
+	    function successPage() {
+		    include 'templates/success.tpl.php';
 	    }
 	}
 ?>

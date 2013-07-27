@@ -46,52 +46,90 @@
 		<input type="text" name="8" id="ordinateOff" value="<?php echo $accessTypeLimit[8]['type_limit'];?>">
 
 		<div class="clearfix"></div>
-		<input type="submit" value="แก้ไข" name="submit">
+		<input type="submit" value="แก้ไข" name="submit" id="addAllDayOff">
 	</form>
 	<div class="clearfix"></div>
 
 	<hr>
-
-	<form action="" class="add-time">
-		<table class="list-to-add">
-			<thead>
+	<table class="list-to-add">
+		<thead>
+			<tr>
+				<th class="aligncenter">ลำดับ</th>
+				<th>ชื่อ-สกุล</th>
+				<th>ตำแหน่ง</th>
+				<th>แผนก</th>
+				<th>ลากิจ</th>
+				<th>ลาป่วย</th>
+				<th>ลาพักร้อน</th>
+				<th>ลาคลอด</th>
+				<th>ลาบวช</th>
+				<th>แก้ไข</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ( $people as $value ) : ?>
 				<tr>
-					<th class="aligncenter">ลำดับ</th>
-					<th>ชื่อ-สกุล</th>
-					<th>ตำแหน่ง</th>
-					<th>แผนก</th>
-					<th>ลากิจ</th>
-					<th>ลาป่วย</th>
-					<th>ลาพักร้อน</th>
-					<th>ลาคลอด</th>
-					<th>ลาบวช</th>
-					<th>หมายเหตุ</th>
+					<td class="aligncenter"><?php echo $value['officer_id'] ?></td>
+					<td><?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname'] ?></td>
+					<td><?php echo $value['position_name']; ?></td>
+					<td>nothing</td>
+					<td>
+						<input
+							type="text"
+							value="<?php echo $value['access_per_year']['type-2']['access_type_limit']; ?>"
+							data-limit="<?php echo $value['access_per_year']['type-2']['access_type_limit']; ?>"
+							data-id="<?php echo $value['officer_id']; ?>"
+							data-type="2"
+							data-year="<?php echo $thisYear?>"
+						>
+					</td>
+					<td>
+						<input
+							type="text"
+							value="<?php echo $value['access_per_year']['type-4']['access_type_limit']; ?>"
+							data-limit="<?php echo $value['access_per_year']['type-4']['access_type_limit']; ?>"
+							data-id="<?php echo $value['officer_id']; ?>"
+							data-type="4"
+							data-year="<?php echo $thisYear?>"
+						>
+					</td>
+					<td>
+						<input
+							type="text"
+							value="<?php echo $value['access_per_year']['type-6']['access_type_limit']; ?>"
+							data-limit="<?php echo $value['access_per_year']['type-6']['access_type_limit']; ?>"
+							data-id="<?php echo $value['officer_id']; ?>"
+							data-type="6"
+							data-year="<?php echo $thisYear?>"
+						>
+					</td>
+					<td>
+						<input
+							type="text"
+							value="<?php echo ($value['access_per_year']['type-7']['access_type_limit'] == '0') ? '-': $value['access_per_year']['type-7']['access_type_limit']; ?>"
+							data-limit="<?php echo $value['access_per_year']['type-6']['access_type_limit']; ?>"
+							data-id="<?php echo $value['officer_id']; ?>"
+							data-type="7"
+							data-year="<?php echo $thisYear?>"
+							<?php echo ($value['gender'] == '2') ? '' : 'disabled'; ?>
+						>
+					</td>
+					<td>
+						<input
+							type="text"
+							value="<?php echo ($value['access_per_year']['type-8']['access_type_limit'] == '0') ? '-': $value['access_per_year']['type-8']['access_type_limit'];?>"
+							data-limit="<?php echo $value['access_per_year']['type-6']['access_type_limit']; ?>"
+							data-id="<?php echo $value['officer_id']; ?>"
+							data-type="8"
+							data-year="<?php echo $thisYear?>"
+							<?php echo ($value['gender'] == '1') ? '' : 'disabled'; ?>
+						>
+					</td>
+					<td><span class="add-dayoff-ok">ตกลง</span></td>
 				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ( $people as $value ) : ?>
-					<tr>
-						<td class="aligncenter"><?php echo $value['officer_id'] ?></td>
-						<td><?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname'] ?></td>
-						<td><?php echo $value['position_name']; ?></td>
-						<td>nothing</td>
-						<!-- <td><input type="text" name="addBusiness"></td>
-						<td><input type="text" name="addBusiness"></td>
-						<td><input type="text" name="addBusiness"></td>
-						<td><input type="text" name="addBusiness"></td>
-						<td><input type="text" name="addBusiness"></td>
-						<td><input type="submit" name="addBusiness"></td> -->
-						<td><?php echo $value['access_per_year']['type-2']['access_type_limit']; ?></td>
-						<td><?php echo $value['access_per_year']['type-4']['access_type_limit']; ?></td>
-						<td><?php echo $value['access_per_year']['type-6']['access_type_limit']; ?></td>
-						<td><?php echo ($value['access_per_year']['type-7']['access_type_limit'] == '0') ? '-': $value['access_per_year']['type-7']['access_type_limit']; ?></td>
-						<td><?php echo ($value['access_per_year']['type-8']['access_type_limit'] == '0') ? '-': $value['access_per_year']['type-8']['access_type_limit'];?></td>
-						<td>ตกลง</td>
-					</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-	</form>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
 	<?php echo $pages->display_pages();   ?>
 </div>
 <script>
@@ -99,6 +137,19 @@
 		$('.datepicker').Zebra_DatePicker({
 			view: 'years',
 			format: 'Y'
+		});
+
+		$('.add-dayoff-ok').on('click', function() {
+			//ceate oblect variable.
+			var inputValue = {};
+			//Find element's `dataType` and element's `value`.
+			$(this).parent().parent().find('input').each(function(){
+				//Push element's `dataType` and `value` to object.
+				inputValue[$(this).data('type')] = $(this).val();
+				inputValue['id'] = $(this).data('id');
+			});
+			//Send object to `controller` see `controller::updateOffPeople()`.
+			$.post('?action=updateOffPeople&year=<?php echo $thisYear;?>', inputValue);
 		});
 	});
 </script>

@@ -432,6 +432,29 @@ table {
                 text-align: $c;
             }
         }
+
+        td:nth-child(n+5) {
+            cursor: pointer;
+            &:hover {
+                background: #ddd;
+                color: $color-link;
+                font-weight: $bd;
+            }
+        }
+
+        input {
+            width: 100%;
+            margin: 0;
+            text-align: $c;
+            border: $no;
+
+            &:disabled { background: $no; }
+        }
+
+        tr:nth-child(even) {
+            background-color: #efefef;
+            input { background-color: #efefef; }
+        }
     }
 
     form.add-time {

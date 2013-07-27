@@ -262,7 +262,7 @@
             }
 
             $sth = $data->prepare($sql2);
-            $sth->execute();
+            return $sth->execute();
         }
 	}
 ?>

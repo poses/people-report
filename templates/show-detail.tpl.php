@@ -121,6 +121,7 @@
 			$.getJSON('?action=getDayOff&userId=<?php echo $id;?>&startDate=<?php echo $startTime?>&endDate=<?php echo $endTime?>',
 				$(this).data(), //Second params is `data`
 				function(data) {
+					console.log(data);
 					//If not found any data just don't show any thing.
 					if ( data.length === 0 ) {
                         $("#list-dayoff").html('');
