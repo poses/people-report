@@ -1,25 +1,27 @@
 <div class="add-dayoff">
 	<h2>แบบฟรอ์มจำนวนวันลางาน</h2>
 
-	<form action="?action=add" method="GET" class="filter left">
+	<form action="<?php echo $_SERVER['REQUEST_URI'];?>" method="GET" class="filter left">
 		<label for="subPosition">ฝ่าย</label>
 		<select name="sub-position" id="subPosition">
-			<?php foreach ( $allPosition as $vPosition )  :?>
+			<?php /*foreach ( $allPosition as $vPosition )  :?>
 				<option value="<?php echo $vPosition['position_name']; ?>"><?php echo $vPosition['position_name']; ?></option>
-			<?php endforeach ?>
+			<?php endforeach*/ ?>
+			<option value="1">Position</option>
 		</select>
 
 		<div class="clearfix"></div>
-		<label for="subPosition">สถานะ</label>
-		<select name="sub-position" id="subPosition">
-			<option value="">ยังไม่มีสถานะ้</option>
+		<label for="status">สถานะ</label>
+		<select name="status" id="status">
+			<option value="1">ยังไม่มีสถานะ้</option>
 		</select>
 
 		<div class="clearfix"></div>
-		<label for="subPosition">ประจำปี</label>
-		<input type="text" class="datepicker" value="<? echo $thisYear;?>">
+		<label for="year">ประจำปี</label>
+		<input type="text" name="year" class="datepicker" value="<? echo $thisYear;?>">
 
 		<div class="clearfix"></div>
+		<input type="hidden" name="action" value="add">
 		<input type="submit" value="submit" name="submit">
 	</form>
 

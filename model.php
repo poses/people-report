@@ -285,7 +285,29 @@
             }
 
             $sth = $data->prepare($sql2);
-            return $sth->execute();
+            $sth->execute();
+        }
+
+        /**
+         * Get limit value of each person
+         * @param  integer $id user's id
+         * @param  integer $accessId  access type id
+         * @param  string $startDate start date.
+         * @param  string $endDate end date
+         * @return array group of data.
+         * @author Ting <ichaiwut.s@gmail.com>
+         */
+        public function getLimitOfUser( $id, $accessId, $startDate, $endDate ) {
+            $data = $this->connect();
+            $sql = "SELECT * FROM faceacc_officer_access_type_limit
+                    WHERE officer_id=$id
+                    AND access_type_id=$accessId
+                    AND access_type_year BETWEEN $startDate AND $endDate
+                   ";
+
+            $sth = $data->prepare($sql);
+            $sth->execute();
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
         }
 	}
 ?>

@@ -98,18 +98,22 @@
 	    	//Find access type and calculate all of access type limit.
     		$accessTypeLimit = $this->model->findAccessTypeLimit();
 
+    		//Check gender and remove key from array.
 			if ( $user[0]['gender'] == 1 ) {
 				unset($accessTypeLimit[7]);
 			} else {
 				unset($accessTypeLimit[8]);
 			}
-
-
-    		$accessTypeLimit['All'] = 1;
-    		foreach ($accessTypeLimit as $kAll => $vAll) {
-    			$accessTypeLimit['All'] += $vAll['type_limit'];
-    		}
-
+			//Get late type limit per each person in the year.
+			foreach ( $accessTypeLimit as $kAccess => $vAccess ) {
+				//get limit type per year and user.
+		    	$limitInType[$kAccess] = $this->model->getLimitOfUser( $id, $vAccess['access_type_id'], date('Y', strtotime($startTime)), date('Y', strtotime($endTime)));
+				//Calculate all of limit type if select multiple year.
+				foreach ( $limitInType[$kAccess] as $kSubAccess => $vSubValue ) {
+					$limitInType[$kAccess]['all_limit_' . $kAccess] += $vSubValue['access_type_limit'];
+				}
+			}
+			//get late with type.
     		$lateWithType = $this->model->lateWithType( $id, $startTime, $endTime);
     		foreach ( $lateWithType as $kType => $vType ) {
     			foreach ( $accessTypeLimit as $kAccess => $vAccess) {
@@ -175,6 +179,7 @@
 		    			if (( $vPeople['gender'] == '1' &&  $kPost == '7' ) || ( $vPeople['gender'] == '2' &&  $kPost == '8' ))  {
 		    				$vPost = '0';
 		    			}
+
 		    			// See `model::addAllAccess`.
 		    			$addStatus = $this->model->addAllAccess( $vPeople['officer_id'], $kPost, $vPost, $thisYear );
 	    			}
