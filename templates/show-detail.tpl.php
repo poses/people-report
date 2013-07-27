@@ -20,7 +20,7 @@
 			</p>
 			<p>
 				<strong>แผนก</strong>
-				<span>-</span>
+				<span><?php echo $siteName[0]['site_name']; ?></span>
 			</p>
 			<p>
 				<strong>เร่ิมทำงาน</strong>

@@ -162,14 +162,28 @@
             return $position;
         }
 
+        /**
+         * Get all position name.
+         * @return array position data.
+         * @author Ting <ichaiwut.s@gmail.com>
+         */
         public function getAllPosition() {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
             $sth = $data->prepare('SELECT distinct(position_name) FROM faceacc_log_sumperday');
             $sth->execute();
-            $allPositionName = $sth->fetchAll(PDO::FETCH_ASSOC);
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
+        }
 
-            return $allPositionName;
+        public function getSiteName( $id = null ) {
+            //If user send `$id` will file last site name of user.
+            $condition = (empty($id) ? '' : "WHERE officer_id=$id ORDER BY logDate DESC");
+            $data = $this->connect();
+            $data->query('SET NAMES utf8');
+            $sql = "SELECT distinct(site_name) FROM faceacc_log_sumperday $condition";
+            $sth = $data->prepare($sql);
+            $sth->execute();
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
         }
 
         /**

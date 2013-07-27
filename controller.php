@@ -130,6 +130,8 @@
     		}
     		//Get position name.
     		$positionName = $this->model->getPosition($id);
+    		//Get site name.
+    		$siteName = $this->model->getSiteName($id);
 
 	    	require_once('templates/show-detail.tpl.php');
 			include 'templates/footer.php';
