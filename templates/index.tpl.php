@@ -91,7 +91,7 @@
 					</td>
 					<td><?php echo ($value['position_name'])?: '-'; ?></td>
 					<td><?php echo $value['late']; ?></td>
-					<td><?php echo gmdate("i", $value['late_minute']); ?></td>
+					<td><?php echo gmdate("H:i", $value['late_minute']); ?></td>
 
 					<td><?php echo ($value['limit_1']['all_limit_1']) ?: 0; ?></td>
 					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[1]['access_type_id']]) ?: 0; ?></td>
