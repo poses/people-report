@@ -22,7 +22,7 @@
 	    	//Set default start and end date.
 	    	$startTime = date('Y-m-d', strtotime('-1 day'));
 	    	$endTime = date('Y-m-d', time());
-	    	$employeeCat = '';
+	    	$employeeCat = '34';
 
 	    	//If user select date.
 	    	if ( !empty($_GET['start_date']) && !empty($_GET['end_date']) && !empty($_GET['employee-cat']) ) {
@@ -31,7 +31,7 @@
 	    		$employeeCat = $_GET['employee-cat'];
 	    	}
 	    	//Count data for `$pages->limit`
-	    	$countAll = $this->model->findOfficer(true, $employeeCat);
+	    	$countAll = $this->model->findOfficer(true, false, $startTime, $endTime, $employeeCat);
 
 	    	//Create paginate object.
 	    	require_once('paginate.php');
@@ -41,7 +41,7 @@
 			$pages->paginate();
 
 	    	//Find data width between date.
-	    	$allData = $this->model->findOfficer(false, $employeeCat, $pages->limit);
+	    	$allData = $this->model->findOfficer(false, $pages->limit, $startTime, $endTime, $employeeCat);
 	    	//Get all position name form `faceacc_log_sumperday::position_name`.
 	    	$allPosition = $this->model->getAllPosition();
 	    	//Find access type
@@ -51,7 +51,7 @@
     		//     - Late per minute : see `Model::latePerMinute()`.
     		//     - Late with type : see `Model::lateWithType()`.
 	    	$people = array();
-	    	foreach ($allData as $kData => $vData) {
+	    	foreach ( $allData as $kData => $vData ) {
 	    		$people[] = $vData;
  	    		$people[$kData]['late'] = $this->model->latePerTimes($vData['officer_id'], $startTime, $endTime);
 	    		$people[$kData]['late_minute'] = $this->model->latePerMinute($vData['officer_id'], $startTime, $endTime);
@@ -151,7 +151,7 @@
 			$allPosition = $this->model->getAllPosition();
 			$accessTypeLimit = $this->model->findAccessTypeLimit();
 			//Count data for `$pages->limit`
-	    	$countAll = $this->model->findOfficer(true, $employeeCat);
+	    	$countAll = $this->model->findOfficer(true, false);
 
 	    	//Create paginate object.
 	    	require_once('paginate.php');
@@ -161,7 +161,7 @@
 			$pages->paginate();
 
 			//Find data width between date.
-	    	$allData = $this->model->findOfficer(false, $employeeCat, $pages->limit);
+	    	$allData = $this->model->findOfficer(false, $pages->limit);
 			$people = array();
 	    	foreach ($allData as $kData => $vData) {
 	    		$people[] = $vData;

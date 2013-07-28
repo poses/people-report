@@ -26,7 +26,7 @@
 		<label for="employee-type">แผนก</label>
 		<select name="employee-cat" id="employee-cat">
 			<?php foreach ($allPosition as $vPosition) : ?>
-				<option value="<?php echo $vPosition['position_name']?>"><?php echo $vPosition['position_name']?></option>
+				<option value="<?php echo $vPosition['position_id']?>"><?php echo $vPosition['position_name']?></option>
 			<?php endforeach; ?>
 			<option value="1">Organization Improvement</option>
 		</select>
@@ -91,7 +91,7 @@
 					</td>
 					<td><?php echo ($value['position_name'])?: '-'; ?></td>
 					<td><?php echo $value['late']; ?></td>
-					<td><?php echo gmdate("H:i", $value['late_minute']); ?></td>
+					<td><?php echo gmdate("H.i", $value['late_minute']); ?></td>
 
 					<td><?php echo ($value['limit_1']['all_limit_1']) ?: 0; ?></td>
 					<td><?php echo ($value['late_with_type']['off-' . $accessTypeLimit[1]['access_type_id']]) ?: 0; ?></td>

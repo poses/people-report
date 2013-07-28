@@ -22,28 +22,34 @@
     	}
 
         /**
-         * Fidd all user with `prename` of user.
+         * Find all user with `prename` of user.
          *
          * @param  boolean $count will use `SELECT COUNT(*)` if value is TURE.
          * @param  String $limit use for set `LIMIT` for mysql.
          * @return Array group of data.
          * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function findOfficer( $count = false, $position, $limit = '' ) {
+        public function findOfficer( $count, $limit, $startDate = null, $endDate = null, $employeeCat ) {
             //Ceck `$count` for select **All** or select **COUNT**.
             //Use `SELECT COUNT(*)` for paginate the result.
             $count = ($count) ? 'COUNT(*)' : '*';
-            $position = empty($position) ? '' : ' AND position_name=' . $position;
+            // $position = empty($position) ? '' : ' AND position_name=' . $position;
+
+            if ( !empty($startDate) && !empty($startDate) ) {
+                $dateCondition = "AND logDate BETWEEN '$startDate' AND '$endDate'";
+            }
 
             $data = $this->connect();
             $data->query('SET NAMES utf8');
-            $sql = "SELECT $count FROM faceacc_officer
+
+            $sql1 = "SELECT $count FROM faceacc_officer
                     INNER JOIN tbl_prename ON
                     faceacc_officer.prename=tbl_prename.id
+                    WHERE faceacc_officer.office=$employeeCat
                     ORDER BY faceacc_officer.officer_id ASC
                     $limit";
 
-            return $data->query($sql);
+            return $data->query($sql1);
         }
 
         /**
@@ -170,7 +176,7 @@
         public function getAllPosition() {
             $data = $this->connect();
             $data->query('SET NAMES utf8');
-            $sth = $data->prepare('SELECT distinct(position_name) FROM faceacc_log_sumperday');
+            $sth = $data->prepare('SELECT distinct(position_name), position_id FROM faceacc_log_sumperday');
             $sth->execute();
             return $sth->fetchAll(PDO::FETCH_ASSOC);
         }
