@@ -5,7 +5,7 @@
 		<label for="subPosition">ฝ่าย</label>
 		<select name="sub-position" id="subPosition">
 			<?php foreach ( $allPosition as $vPosition )  :?>
-				<option value="<?php echo $vPosition['position_id']; ?>"><?php echo $vPosition['position_name']; ?></option>
+				<option value="<?php echo $vPosition['position_id']; ?>" <?php echo ($employeeCat == $vPosition['position_id']) ? 'selected' : '';?>><?php echo $vPosition['position_name']; ?></option>
 			<?php endforeach ?>
 		</select>
 

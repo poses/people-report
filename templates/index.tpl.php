@@ -26,7 +26,7 @@
 		<label for="employee-type">แผนก</label>
 		<select name="employee-cat" id="employee-cat">
 			<?php foreach ($allPosition as $vPosition) : ?>
-				<option value="<?php echo $vPosition['position_id']?>"><?php echo $vPosition['position_name']?></option>
+				<option value="<?php echo $vPosition['position_id']?>" <?php echo ($employeeCat == $vPosition['position_id']) ? 'selected' : '';?>><?php echo $vPosition['position_name']?></option>
 			<?php endforeach; ?>
 			<option value="1">Organization Improvement</option>
 		</select>
