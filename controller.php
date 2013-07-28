@@ -167,8 +167,8 @@
 			$people = array();
 	    	foreach ($allData as $kData => $vData) {
 	    		$people[] = $vData;
-	    		//Get position name and get access pr year.
-	    		$people[$kData]['position_name'] = $this->model->getPosition($vData['officer_id']);
+	    		//Get position name and get access per year.
+	    		$people[$kData]['site_name'] = $this->model->getSiteName($vData['officer_id']);
 	    		$people[$kData]['access_per_year'] = $this->model->findLimitPerYear($vData['officer_id'], $thisYear);
 
 	    	}

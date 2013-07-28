@@ -186,10 +186,17 @@
             $condition = (empty($id) ? '' : "WHERE officer_id=$id ORDER BY logDate DESC");
             $data = $this->connect();
             $data->query('SET NAMES utf8');
-            $sql = "SELECT distinct(site_name) FROM faceacc_log_sumperday $condition";
+            $sql = "SELECT distinct(site_name), site_id FROM faceacc_log_sumperday $condition";
             $sth = $data->prepare($sql);
             $sth->execute();
-            return $sth->fetchAll(PDO::FETCH_ASSOC);
+            $siteName = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            $allSite = array();
+            foreach ($siteName as $value) {
+                $allSite[$value['site_id']] = $value;
+            }
+
+            return $allSite;
         }
 
         /**

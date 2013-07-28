@@ -73,7 +73,7 @@
 					<td class="aligncenter"><?php echo $value['officer_id'] ?></td>
 					<td><?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname'] ?></td>
 					<td><?php echo $allPosition[$value['office']]['position_name']; ?></td>
-					<td>nothing</td>
+					<td><?php echo $value['site_name'][$value['site_id']]['site_name']; ?></td>
 					<td>
 						<input
 							type="text"
