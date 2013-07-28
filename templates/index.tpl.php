@@ -1,16 +1,13 @@
 <?php /*
+	================= Pagination Option ================
 	echo $pages->display_pages();
 	echo "Page $pages->current_page of $pages->num_pages";
-?>
-<span>
-	<?php echo $pages->display_jump_menu(); ?> /
-	<?php echo $pages->display_items_per_page(); ?>
-</span>
-<?php */?>
+	echo $pages->display_jump_menu();
+	echo $pages->display_items_per_page();
+	=====================================================
+*/?>
 <div class="team-view">
-
 	<h2 class="left">รายงานสรุปการมาทำงาน</h2>
-
 	<form action="?action=index" method="GET" class="team-select right">
 		<label for="start-team-date">ช่วงเวลา </label>
 		<input type="text" name="start_date" id="start_date" class="theDatepicker" value="<?php echo date('d F Y', strtotime($startTime)); ?>">

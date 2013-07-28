@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * Controller for process this project.
+	 * Controller :: for process this project.
 	 *
 	 * @package Maximize by 3Musketters
 	 * @version 1.0
@@ -241,8 +241,7 @@
 
 	    /**
 	     * Redierct page.
-	     * Use this if send `post` in same page and reload page
-	     * are requried.
+	     * Use this if send `post` in same page and reload page are requried.
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
 	    function successPage() {

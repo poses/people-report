@@ -4,7 +4,7 @@
 			- User image will read on field : `$user[0]['picture']`;
 			- image dimension should be `140 x 140px`.
 		-->
-		<img src="images/no-photo" alt="<?php echo $user[0]['firstname'] ?>" title="<?php echo $user[0]['firstname'] ?>" class="left">
+		<img src="images/no-photo.jpg" alt="<?php echo $user[0]['firstname'] ?>" title="<?php echo $user[0]['firstname'] ?>" class="left">
 		<div class="right mini-desc">
 			<p>
 				<strong>ชื่อ-สกุล</strong>
@@ -30,9 +30,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="clearfix"></div>
-
 	<hr>
-
 	<form action="?action=viewDetail&id=<?php echo $user[0]['officer_id']; ?>" method="POST" class="user-detail-date">
 		<div class="form-label">ข้อมูลช่วงเวลา</div>
 
@@ -93,7 +91,10 @@
 	</table>
 </div>
 
-<!-- Create underscore template for render day off detail. -->
+<!--
+	============== UDERSCORE TEMPLATE ===================
+	Create underscore template for render day off detail.
+-->
 <script type="text/html" id="js-list-dayoff">
 	<thead>
 		<tr>
@@ -131,7 +132,6 @@
 			$.getJSON('?action=getDayOff&userId=<?php echo $id;?>&startDate=<?php echo $startTime?>&endDate=<?php echo $endTime?>',
 				$(this).data(), //Second params is `data`
 				function(data) {
-					console.log(data);
 					//If not found any data just don't show any thing.
 					if ( data.length === 0 ) {
                         $("#list-dayoff").html('');

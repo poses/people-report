@@ -4,7 +4,6 @@
 	 * @package Maximize by 3Musketters
      * @version 1.0
 	 * @author Ting <ichaiwut.s@gmail.com>
-	 * @since 8 July 2013
 	 */
 	class Model {
         /**
@@ -26,6 +25,7 @@
          *
          * @param  boolean $count will use `SELECT COUNT(*)` if value is TURE.
          * @param  String $limit use for set `LIMIT` for mysql.
+         * @param  interger $employerCate user position id.
          * @return Array group of data.
          * @author Ting <ichaiwut.s@gmail.com>
          */
@@ -158,9 +158,7 @@
             $sth = $data->prepare($sql);
             $sth->execute();
             $positionName = $sth->fetchAll(PDO::FETCH_ASSOC);
-            $position = $positionName[0]['position_name'];
-
-            return $position;
+            return $positionName[0]['position_name'];
         }
 
         /**
@@ -211,9 +209,7 @@
 
             $sth = $data->prepare($sql);
             $sth->execute();
-            $user = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-            return $user;
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
         }
 
         /**
@@ -237,9 +233,7 @@
 
             $sth = $data->prepare($sql);
             $sth->execute();
-            $dayOff = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-            return $dayOff;
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
         }
 
         /**
