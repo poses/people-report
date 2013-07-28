@@ -4,10 +4,9 @@
 	<form action="<?php echo $_SERVER['REQUEST_URI'];?>" method="GET" class="filter left">
 		<label for="subPosition">ฝ่าย</label>
 		<select name="sub-position" id="subPosition">
-			<?php /*foreach ( $allPosition as $vPosition )  :?>
-				<option value="<?php echo $vPosition['position_name']; ?>"><?php echo $vPosition['position_name']; ?></option>
-			<?php endforeach*/ ?>
-			<option value="1">Position</option>
+			<?php foreach ( $allPosition as $vPosition )  :?>
+				<option value="<?php echo $vPosition['position_id']; ?>"><?php echo $vPosition['position_name']; ?></option>
+			<?php endforeach ?>
 		</select>
 
 		<div class="clearfix"></div>
@@ -73,7 +72,7 @@
 				<tr>
 					<td class="aligncenter"><?php echo $value['officer_id'] ?></td>
 					<td><?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname'] ?></td>
-					<td><?php echo $value['position_name']; ?></td>
+					<td><?php echo $allPosition[$value['office']]['position_name']; ?></td>
 					<td>nothing</td>
 					<td>
 						<input

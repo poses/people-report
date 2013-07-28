@@ -31,7 +31,7 @@
 	    		$employeeCat = $_GET['employee-cat'];
 	    	}
 	    	//Count data for `$pages->limit`
-	    	$countAll = $this->model->findOfficer(true, false, $startTime, $endTime, $employeeCat);
+	    	$countAll = $this->model->findOfficer(true, false, $employeeCat);
 
 	    	//Create paginate object.
 	    	require_once('paginate.php');
@@ -41,7 +41,7 @@
 			$pages->paginate();
 
 	    	//Find data width between date.
-	    	$allData = $this->model->findOfficer(false, $pages->limit, $startTime, $endTime, $employeeCat);
+	    	$allData = $this->model->findOfficer(false, $pages->limit, $employeeCat);
 	    	//Get all position name form `faceacc_log_sumperday::position_name`.
 	    	$allPosition = $this->model->getAllPosition();
 	    	//Find access type
@@ -144,14 +144,16 @@
 			include 'templates/header.php';
 			//Get year from query string.
 			$thisYear = date('Y', time());
-			if ( isset($_GET['year']) && !empty($_GET['year']) ) {
+			$employeeCat = '34';
+			if ( isset($_GET['year']) && !empty($_GET['year']) && !empty($_GET['sub-position']) ) {
 				$thisYear = $_GET['year'];
+				$employeeCat = $_GET['sub-position'];
 			}
 
 			$allPosition = $this->model->getAllPosition();
 			$accessTypeLimit = $this->model->findAccessTypeLimit();
 			//Count data for `$pages->limit`
-	    	$countAll = $this->model->findOfficer(true, false);
+	    	$countAll = $this->model->findOfficer(true, false, $employeeCat);
 
 	    	//Create paginate object.
 	    	require_once('paginate.php');
@@ -161,7 +163,7 @@
 			$pages->paginate();
 
 			//Find data width between date.
-	    	$allData = $this->model->findOfficer(false, $pages->limit);
+	    	$allData = $this->model->findOfficer(false, $pages->limit, $employeeCat);
 			$people = array();
 	    	foreach ($allData as $kData => $vData) {
 	    		$people[] = $vData;

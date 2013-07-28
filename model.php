@@ -29,15 +29,10 @@
          * @return Array group of data.
          * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function findOfficer( $count, $limit, $startDate = null, $endDate = null, $employeeCat ) {
+        public function findOfficer( $count, $limit, $employeeCat ) {
             //Ceck `$count` for select **All** or select **COUNT**.
             //Use `SELECT COUNT(*)` for paginate the result.
             $count = ($count) ? 'COUNT(*)' : '*';
-            // $position = empty($position) ? '' : ' AND position_name=' . $position;
-
-            if ( !empty($startDate) && !empty($startDate) ) {
-                $dateCondition = "AND logDate BETWEEN '$startDate' AND '$endDate'";
-            }
 
             $data = $this->connect();
             $data->query('SET NAMES utf8');
@@ -178,7 +173,14 @@
             $data->query('SET NAMES utf8');
             $sth = $data->prepare('SELECT distinct(position_name), position_id FROM faceacc_log_sumperday');
             $sth->execute();
-            return $sth->fetchAll(PDO::FETCH_ASSOC);
+            $allPosition = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            $positions = array();
+            foreach ($allPosition as $value) {
+                $positions[$value['position_id']] = $value;
+            }
+
+            return $positions;
         }
 
         public function getSiteName( $id = null ) {

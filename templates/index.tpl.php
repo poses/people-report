@@ -89,7 +89,7 @@
 							<?php echo $value['prename_th'] . $value['firstname'] . ' ' . $value['surname']; ?>
 						</a>
 					</td>
-					<td><?php echo ($value['position_name'])?: '-'; ?></td>
+					<td><?php echo $allPosition[$value['office']]['position_name']; ?></td>
 					<td><?php echo $value['late']; ?></td>
 					<td><?php echo gmdate("H.i", $value['late_minute']); ?></td>
 
