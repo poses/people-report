@@ -30,6 +30,12 @@
 						</a>
 					</li>
 					<li>
+						<a href="?action=add">
+							Add Data <br>
+							<small>บันทึกการมาทำงาน</small>
+						</a>
+					</li>
+					<li>
 						<a href="#">
 							Knowladge sharing<br>
 							<small>ความรู้แต่ละฝ่ายงาน</small>
