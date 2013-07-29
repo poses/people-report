@@ -21,7 +21,7 @@
 		$controller->index();
 	} else {
 		//and use `$action` for function name.
-		$controller->$action(($params) ?: '');
+		$controller->$action(($params) ? $params : '');
 	}
 
 ?>

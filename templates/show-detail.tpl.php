@@ -59,21 +59,21 @@
 		<tbody>
 			<tr>
 				<td>สิทธิ์การลา</td>
-				<td><?php echo ($accessTypeLimit[1]['type_limit']) ?: '0'; ?></td>
+				<td><?php echo ($accessTypeLimit[1]['type_limit']) ? $accessTypeLimit[1]['type_limit'] : '0'; ?></td>
 				<td><?php echo $limitInType[2]['all_limit_2']; ?></td>
 				<td><?php echo $limitInType[4]['all_limit_4']; ?></td>
 				<td><?php echo $limitInType[6]['all_limit_6']; ?></td>
-				<td><?php echo ($limitInType[7]['all_limit_7']) ?: '0'; ?></td>
-				<td><?php echo ($limitInType[8]['all_limit_8']) ?: '0'; ?></td>
+				<td><?php echo ($limitInType[7]['all_limit_7']) ? $limitInType[7]['all_limit_7']: '0'; ?></td>
+				<td><?php echo ($limitInType[8]['all_limit_8']) ? $limitInType[8]['all_limit_8']: '0'; ?></td>
 			</tr>
 			<tr>
 				<td>ลาไปแล้ว</td>
-				<td data-access-id="<?php echo $accessTypeLimit[1]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[1]['access_type_id']]) ?: 0; ?></td>
-				<td data-access-id="<?php echo $accessTypeLimit[2]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[2]['access_type_id']]) ?: 0; ?></td>
-				<td data-access-id="<?php echo $accessTypeLimit[4]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[4]['access_type_id']]) ?: 0; ?></td>
-				<td data-access-id="<?php echo $accessTypeLimit[6]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
-				<td data-access-id="<?php echo $accessTypeLimit[7]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]) ?: 0; ?></td>
-				<td data-access-id="<?php echo $accessTypeLimit[8]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]) ?: 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[1]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[1]['access_type_id']]) ? $lateWithType['off-' . $accessTypeLimit[1]['access_type_id']] : 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[2]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[2]['access_type_id']]) ? $lateWithType['off-' . $accessTypeLimit[2]['access_type_id']] : 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[4]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[4]['access_type_id']]) ? $lateWithType['off-' . $accessTypeLimit[4]['access_type_id']] : 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[6]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ? $lateWithType['off-' . $accessTypeLimit[6]['access_type_id']] : 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[7]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]) ? $lateWithType['off-' . $accessTypeLimit[7]['access_type_id']] : 0; ?></td>
+				<td data-access-id="<?php echo $accessTypeLimit[8]['access_type_id']; ?>"><?php echo ($lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]) ? $lateWithType['off-' . $accessTypeLimit[8]['access_type_id']] : 0; ?></td>
 			</tr>
 			<tr class="remain-date">
 				<td>วันลาคงเหลือ</td>
