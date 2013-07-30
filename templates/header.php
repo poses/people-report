@@ -3,11 +3,12 @@
 	 * Header page : the header template.
 	 * @author Ting <ichaiwut.@gmail.com>
 	 */
+	header('Content-Type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta charset="utf-8">
 		<title>รายงานเวลาการทำงานของพนักงาน</title>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/default.css">
@@ -15,6 +16,9 @@
 		<script src="js/modernizr.js"></script>
 		<script src="js/underscore-min.js"></script>
 		<script src="js/zebra_datepicker.js"></script>
+		<script>
+
+		</script>
 	</head>
 	<body>
 		<div class="container">
