@@ -10,9 +10,10 @@
 		</select>
 
 		<div class="clearfix"></div>
-		<label for="status">สถานะ</label>
-		<select name="status" id="status">
-			<option value="1">ยังไม่มีสถานะ้</option>
+		<label for="employeeStatus">สถานะพนักงาน</label>
+		<select name="employee-status" id="employeeStatus">
+			<option value="1" <?php echo ($employeeStatus == '1') ? 'selected' : '';?>>ปกติ</option>
+			<option value="2" <?php echo ($employeeStatus == '2') ? 'selected' : '';?>>พ้นสภาพพนักงาน</option>
 		</select>
 
 		<div class="clearfix"></div>
@@ -126,12 +127,15 @@
 							<?php echo ($value['gender'] == '1') ? '' : 'disabled'; ?>
 						>
 					</td>
-					<td><span class="add-dayoff-ok">ตกลง</span></td>
+					<td class="add-dayoff-ok">ตกลง</td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
-	<?php echo $pages->display_pages();   ?>
+	<div class="left"> <?php echo $pages->display_pages(); ?> </div>
+	<div class="right">
+
+	</div>
 </div>
 <script>
 	$(function() {
@@ -144,7 +148,7 @@
 			//ceate oblect variable.
 			var inputValue = {};
 			//Find element's `dataType` and element's `value`.
-			$(this).parent().parent().find('input').each(function(){
+			$(this).parent().find('input').each(function(){
 				//Push element's `dataType` and `value` to object.
 				inputValue[$(this).data('type')] = $(this).val();
 				inputValue['id'] = $(this).data('id');

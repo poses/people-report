@@ -150,15 +150,21 @@
 			//Get year from query string.
 			$thisYear = date('Y', time());
 			$employeeCat = '34';
-			if ( isset($_GET['year']) && !empty($_GET['year']) && !empty($_GET['sub-position']) ) {
+			$employeeStatus = '34';
+
+			if ( isset($_GET['year'])
+				&& !empty($_GET['year'])
+				&& !empty($_GET['sub-position'])
+				&& !empty($_GET['employee-status'])) {
 				$thisYear = $_GET['year'];
 				$employeeCat = $_GET['sub-position'];
+				$employeeStatus = $_GET['employee-status'];
 			}
 
 			$allPosition = $this->model->getAllPosition();
 			$accessTypeLimit = $this->model->findAccessTypeLimit();
 			//Count data for `$pages->limit`
-	    	$countAll = $this->model->findOfficer(true, false, $employeeCat);
+	    	$countAll = $this->model->findOfficer(true, false, $employeeCat, $employeeStatus);
 
 	    	//Create paginate object.
 	    	require_once('paginate.php');
@@ -168,7 +174,7 @@
 			$pages->paginate();
 
 			//Find data width between date.
-	    	$allData = $this->model->findOfficer(false, $pages->limit, $employeeCat);
+	    	$allData = $this->model->findOfficer(false, $pages->limit, $employeeCat, $employeeStatus);
 			$people = array();
 	    	foreach ($allData as $kData => $vData) {
 	    		$people[] = $vData;
