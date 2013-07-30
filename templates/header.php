@@ -16,9 +16,6 @@
 		<script src="js/modernizr.js"></script>
 		<script src="js/underscore-min.js"></script>
 		<script src="js/zebra_datepicker.js"></script>
-		<script>
-
-		</script>
 	</head>
 	<body>
 		<div class="container">

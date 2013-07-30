@@ -88,7 +88,7 @@
 	     * @author Ting <ichaiwut.s@gmail.com>
 	     */
 	    public function viewDetail( $id ) {
-	    	include 'templates/header.php';
+	    	// include 'templates/header.php';
 	    	//Find user data.
 	    	$user = $this->model->findById($id);
 	    	//Set default start and end date.
@@ -133,7 +133,7 @@
     		$siteName = $this->model->getSiteName($id);
 
 	    	require_once('templates/show-detail.tpl.php');
-			include 'templates/footer.php';
+			// include 'templates/footer.php';
 	    }
 
 	    /**
