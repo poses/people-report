@@ -424,6 +424,14 @@ table {
             text-align: $c;
         }
     }
+
+    button.addAll {
+        margin: 10px 0;
+        padding: 3px 10px;
+        border: 1px solid $color-link;
+        background: $color-link;
+        color: #fff;
+    }
 }
 
 .form-label { display: $block; }

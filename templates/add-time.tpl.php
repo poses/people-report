@@ -10,7 +10,7 @@
 		</select>
 
 		<div class="clearfix"></div>
-		<label for="employeeStatus">สถานะพนักงาน</label>
+		<label for="employeeStatus">สถานะ</label>
 		<select name="employee-status" id="employeeStatus">
 			<option value="1" <?php echo ($employeeStatus == '1') ? 'selected' : '';?>>ปกติ</option>
 			<option value="2" <?php echo ($employeeStatus == '2') ? 'selected' : '';?>>พ้นสภาพพนักงาน</option>
@@ -82,7 +82,7 @@
 							data-limit="<?php echo $value['access_per_year']['type-2']['access_type_limit']; ?>"
 							data-id="<?php echo $value['officer_id']; ?>"
 							data-type="2"
-							data-year="<?php echo $thisYear?>"
+							name="business"
 						>
 					</td>
 					<td>
@@ -92,7 +92,7 @@
 							data-limit="<?php echo $value['access_per_year']['type-4']['access_type_limit']; ?>"
 							data-id="<?php echo $value['officer_id']; ?>"
 							data-type="4"
-							data-year="<?php echo $thisYear?>"
+							name="sick"
 						>
 					</td>
 					<td>
@@ -102,7 +102,7 @@
 							data-limit="<?php echo $value['access_per_year']['type-6']['access_type_limit']; ?>"
 							data-id="<?php echo $value['officer_id']; ?>"
 							data-type="6"
-							data-year="<?php echo $thisYear?>"
+							name="summer"
 						>
 					</td>
 					<td>
@@ -112,7 +112,7 @@
 							data-limit="<?php echo $value['access_per_year']['type-6']['access_type_limit']; ?>"
 							data-id="<?php echo $value['officer_id']; ?>"
 							data-type="7"
-							data-year="<?php echo $thisYear?>"
+							name="pregnant"
 							<?php echo ($value['gender'] == '2') ? '' : 'disabled'; ?>
 						>
 					</td>
@@ -123,7 +123,7 @@
 							data-limit="<?php echo $value['access_per_year']['type-6']['access_type_limit']; ?>"
 							data-id="<?php echo $value['officer_id']; ?>"
 							data-type="8"
-							data-year="<?php echo $thisYear?>"
+							name="monk"
 							<?php echo ($value['gender'] == '1') ? '' : 'disabled'; ?>
 						>
 					</td>
@@ -134,8 +134,9 @@
 	</table>
 	<div class="left"> <?php echo $pages->display_pages(); ?> </div>
 	<div class="right">
-
+		<button class="addAll">บันทึกทั้งหมด</button>
 	</div>
+	<div class="clearfix"></div>
 </div>
 <script>
 	$(function() {
@@ -155,6 +156,16 @@
 			});
 			//Send object to `controller` see `controller::updateOffPeople()`.
 			$.post('?action=updateOffPeople&year=<?php echo $thisYear;?>', inputValue);
+		});
+		//Save all setting
+		$('.addAll').on('click', function() {
+			var allData = {};
+			$('table.list-to-add tr td').find('input').each(function() {
+				allData[$(this).data('type')] = $(this).val();
+				allData['id'] = $(this).data('id');
+				$.post('?action=updateOffPeople&year=<?php echo $thisYear;?>', allData);
+			});
+			alert('แก้ไขข้อมูลทุกเรคอร์ดเรียบร้อยแล้ว');
 		});
 	});
 </script>
