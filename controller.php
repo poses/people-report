@@ -23,15 +23,20 @@
 	    	$startTime = date('Y-m-d', strtotime('-1 day'));
 	    	$endTime = date('Y-m-d', time());
 	    	$employeeCat = '34';
+	    	$employeeStatus = '1';
 
 	    	//If user select date.
-	    	if ( !empty($_GET['start_date']) && !empty($_GET['end_date']) && !empty($_GET['employee-cat']) ) {
+	    	if ( !empty($_GET['start_date'])
+	    		 && !empty($_GET['end_date'])
+	    		 && !empty($_GET['employee-cat'])
+	    		 && !empty($_GET['employee-status']) ) {
 	    		$startTime = date('Y-m-d', strtotime($_GET['start_date']));
 	    		$endTime = date('Y-m-d', strtotime($_GET['end_date']));
 	    		$employeeCat = $_GET['employee-cat'];
+	    		$employeeStatus = $_GET['employee-status'];
 	    	}
 	    	//Count data for `$pages->limit`
-	    	$countAll = $this->model->findOfficer(true, false, $employeeCat);
+	    	$countAll = $this->model->findOfficer(true, false, $employeeCat, $employeeStatus);
 
 	    	//Create paginate object.
 	    	require_once('paginate.php');
@@ -41,7 +46,7 @@
 			$pages->paginate();
 
 	    	//Find data width between date.
-	    	$allData = $this->model->findOfficer(false, $pages->limit, $employeeCat);
+	    	$allData = $this->model->findOfficer(false, $pages->limit, $employeeCat, $employeeStatus);
 	    	//Get all position name form `faceacc_log_sumperday::position_name`.
 	    	$allPosition = $this->model->getAllPosition();
 	    	//Find access type

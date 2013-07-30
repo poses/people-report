@@ -25,11 +25,12 @@
          *
          * @param  boolean $count will use `SELECT COUNT(*)` if value is TURE.
          * @param  String $limit use for set `LIMIT` for mysql.
-         * @param  interger $employerCate user position id.
+         * @param  interger $employerCat user position id.
+         * @param  interger $employerStatus user status id.
          * @return Array group of data.
          * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function findOfficer( $count, $limit, $employeeCat ) {
+        public function findOfficer( $count, $limit, $employeeCat, $employeeStatus ) {
             //Ceck `$count` for select **All** or select **COUNT**.
             //Use `SELECT COUNT(*)` for paginate the result.
             $count = ($count) ? 'COUNT(*)' : '*';
@@ -41,6 +42,7 @@
                     INNER JOIN tbl_prename ON
                     faceacc_officer.prename=tbl_prename.id
                     WHERE faceacc_officer.office=$employeeCat
+                    AND faceacc_officer.status_id=$employeeStatus
                     ORDER BY faceacc_officer.officer_id ASC
                     $limit";
 

@@ -16,11 +16,7 @@
 		<input type="text" name="end_date" id="end_date" class="date-stop theDatepicker" value="<?php echo date('d F Y', strtotime($endTime)); ?>">
 
 		<div class="clearfix"></div>
-		<label for="employee-type">ประเภทพนักงาน</label>
-		<input type="text" name="employee-type" id="employee-type" value="พนักงานประจำ" disabled>
-
-		<div class="clearfix"></div>
-		<label for="employee-type">แผนก</label>
+		<label for="employee-type">ตำแหน่ง</label>
 		<select name="employee-cat" id="employee-cat">
 			<?php foreach ($allPosition as $vPosition) : ?>
 				<option value="<?php echo $vPosition['position_id']?>" <?php echo ($employeeCat == $vPosition['position_id']) ? 'selected' : '';?>><?php echo $vPosition['position_name']?></option>
@@ -29,8 +25,15 @@
 		</select>
 
 		<div class="clearfix"></div>
-		<label for="employee-type">สถานะ</label>
-		<input type="text" name="employee-cat" id="employee-cat" value="-" disabled>
+		<label for="employeeStatus">สถานะพนักงาน</label>
+		<select name="employee-status" id="employeeStatus">
+			<option value="1" <?php echo ($employeeStatus == '1') ? 'selected' : '';?>>ปกติ</option>
+			<option value="2" <?php echo ($employeeStatus == '2') ? 'selected' : '';?>>พ้นสภาพพนักงาน</option>
+		</select>
+
+		<div class="clearfix"></div>
+		<label for="employeeType">ประเภทพนักงาน</label>
+		<input type="text" name="employee-type" id="employeeType" value="พนักงานประจำ" disabled>
 
 		<input type="submit" name="submit" value="ค้นหา">
 	</form>
