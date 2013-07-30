@@ -1,1 +1,1 @@
-<?php header('Location: ' . $_SERVER['HTTP_REFERER']); ?>
+<script>window.location.reload();</script>
