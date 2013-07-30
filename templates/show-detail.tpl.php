@@ -77,12 +77,12 @@
 			</tr>
 			<tr class="remain-date">
 				<td>วันลาคงเหลือ</td>
-				<td><?php echo $limitInType[1]['all_limit_1'] - ($lateWithType['off-' . $accessTypeLimit[1]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo $limitInType[2]['all_limit_2'] - ($lateWithType['off-' . $accessTypeLimit[2]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo $limitInType[4]['all_limit_4'] - ($lateWithType['off-' . $accessTypeLimit[4]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo $limitInType[6]['all_limit_6'] - ($lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo $limitInType[7]['all_limit_7'] - ($lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]) ?: 0; ?></td>
-				<td><?php echo $limitInType[8]['all_limit_8'] - ($lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]) ?: 0; ?></td>
+				<td><?php echo $limitInType[1]['all_limit_1'] - $lateWithType['off-' . $accessTypeLimit[1]['access_type_id']]; ?></td>
+				<td><?php echo $limitInType[2]['all_limit_2'] - $lateWithType['off-' . $accessTypeLimit[2]['access_type_id']]; ?></td>
+				<td><?php echo $limitInType[4]['all_limit_4'] - $lateWithType['off-' . $accessTypeLimit[4]['access_type_id']]; ?></td>
+				<td><?php echo $limitInType[6]['all_limit_6'] - $lateWithType['off-' . $accessTypeLimit[6]['access_type_id']]; ?></td>
+				<td><?php echo $limitInType[7]['all_limit_7'] - $lateWithType['off-' . $accessTypeLimit[7]['access_type_id']]; ?></td>
+				<td><?php echo $limitInType[8]['all_limit_8'] - $lateWithType['off-' . $accessTypeLimit[8]['access_type_id']]; ?></td>
 			</tr>
 		</tbody>
 	</table>
