@@ -41,7 +41,7 @@
 					</p>
 					<p>
 						<strong>แผนก</strong>
-						<span><?php echo $siteName[0]['site_name']; ?></span>
+						<span><?php echo $siteName[$user[0]['site_id']]['site_name']; ?></span>
 					</p>
 					<p>
 						<strong>เร่ิมทำงาน</strong>
