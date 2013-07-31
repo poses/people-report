@@ -150,7 +150,7 @@
 			//Get year from query string.
 			$thisYear = date('Y', time());
 			$employeeCat = '34';
-			$employeeStatus = '34';
+			$employeeStatus = '1';
 
 			if ( isset($_GET['year'])
 				&& !empty($_GET['year'])
