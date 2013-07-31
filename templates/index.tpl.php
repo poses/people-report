@@ -18,10 +18,19 @@
 		<div class="clearfix"></div>
 		<label for="employee-type">ตำแหน่ง</label>
 		<select name="employee-cat" id="employee-cat">
+			<option value="" <?php echo empty($employeeCat) ? 'selected' : '';?>>ทั้งหมด</option>
 			<?php foreach ($allPosition as $vPosition) : ?>
 				<option value="<?php echo $vPosition['position_id']?>" <?php echo ($employeeCat == $vPosition['position_id']) ? 'selected' : '';?>><?php echo $vPosition['position_name']?></option>
 			<?php endforeach; ?>
-			<option value="1">Organization Improvement</option>
+		</select>
+
+		<div class="clearfix"></div>
+		<label for="employeeSite">แผนก</label>
+		<select name="employee-site" id="employeeSite">
+			<option value="" <?php echo empty($employeeSite) ? 'selected' : '';?>>ทั้งหมด</option>
+			<?php foreach ($allSites as $vSite) : ?>
+				<option value="<?php echo $vSite['site_id']?>" <?php echo ($employeeSite == $vSite['site_id']) ? 'selected' : '';?>><?php echo $vSite['site_name']?></option>
+			<?php endforeach; ?>
 		</select>
 
 		<div class="clearfix"></div>
@@ -31,9 +40,6 @@
 			<option value="2" <?php echo ($employeeStatus == '2') ? 'selected' : '';?>>พ้นสภาพพนักงาน</option>
 		</select>
 
-		<div class="clearfix"></div>
-		<label for="employeeType">ประเภทพนักงาน</label>
-		<input type="text" name="employee-type" id="employeeType" value="พนักงานประจำ" disabled>
 
 		<input type="submit" name="submit" value="ค้นหา">
 	</form>

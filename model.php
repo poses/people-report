@@ -30,10 +30,12 @@
          * @return Array group of data.
          * @author Ting <ichaiwut.s@gmail.com>
          */
-        public function findOfficer( $count, $limit, $employeeCat, $employeeStatus ) {
+        public function findOfficer( $count, $limit, $employeeCat, $employeeStatus, $employeeSite) {
             //Ceck `$count` for select **All** or select **COUNT**.
             //Use `SELECT COUNT(*)` for paginate the result.
             $count = ($count) ? 'COUNT(*)' : '*';
+            $employeeCat = ($employeeCat) ? "AND faceacc_officer.office=$employeeCat" : '';
+            $employeeSite = ($employeeSite) ? "AND faceacc_officer.site_id=$employeeSite" : '';
 
             $data = $this->connect();
             $data->query('SET NAMES utf8');
@@ -41,8 +43,9 @@
             $sql1 = "SELECT $count FROM faceacc_officer
                     INNER JOIN tbl_prename ON
                     faceacc_officer.prename=tbl_prename.id
-                    WHERE faceacc_officer.office=$employeeCat
-                    AND faceacc_officer.status_id=$employeeStatus
+                    WHERE faceacc_officer.status_id=$employeeStatus
+                    $employeeCat
+                    $employeeSite
                     ORDER BY faceacc_officer.officer_id ASC
                     $limit";
 

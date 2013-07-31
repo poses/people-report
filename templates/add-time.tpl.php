@@ -2,11 +2,21 @@
 	<h2>แบบฟรอ์มจำนวนวันลางาน</h2>
 
 	<form action="<?php echo $_SERVER['REQUEST_URI'];?>" method="GET" class="filter left">
-		<label for="subPosition">ฝ่าย</label>
+		<label for="subPosition">ตำแหน่ง</label>
 		<select name="sub-position" id="subPosition">
+			<option value="" <?php echo empty($employeeCat) ? 'selected' : '';?>>ทั้งหมด</option>
 			<?php foreach ( $allPosition as $vPosition )  :?>
 				<option value="<?php echo $vPosition['position_id']; ?>" <?php echo ($employeeCat == $vPosition['position_id']) ? 'selected' : '';?>><?php echo $vPosition['position_name']; ?></option>
 			<?php endforeach ?>
+		</select>
+
+		<div class="clearfix"></div>
+		<label for="employeeSite">แผนก</label>
+		<select name="employee-site" id="employeeSite">
+			<option value="" <?php echo empty($employeeSite) ? 'selected' : '';?>>ทั้งหมด</option>
+			<?php foreach ($allSites as $vSite) : ?>
+				<option value="<?php echo $vSite['site_id']?>" <?php echo ($employeeSite == $vSite['site_id']) ? 'selected' : '';?>><?php echo $vSite['site_name']?></option>
+			<?php endforeach; ?>
 		</select>
 
 		<div class="clearfix"></div>
